@@ -1,0 +1,46 @@
+@use "../../../scss/util/" as u;
+
+.home {
+  min-height: 100svh;
+  padding-inline: var(--PADDING-INLINE-SM);
+  padding-block: var(--PADDING-BLOCK-SM);
+
+  h1,
+  p {
+    margin-bottom: 20px;
+  }
+
+  &__select {
+    margin-top: 50px;
+
+    .select-container {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--M-GAP);
+
+      li {
+        min-height: 150px;
+        min-width: 100%;
+        background-color: var(--SUB-COLOR);
+        border-radius: u.rem(10);
+        display: grid;
+        place-items: center;
+
+        &:nth-child(2) {
+          background-color: var(--MAIN-COLOR);
+        }
+
+        &:nth-child(3) {
+          background-color: var(--SUB-COLOR-DARK);
+        }
+
+        a {
+          font-size: u.rem(30);
+          font-weight: 700;
+          color: white;
+        }
+      }
+    }
+  }
+}

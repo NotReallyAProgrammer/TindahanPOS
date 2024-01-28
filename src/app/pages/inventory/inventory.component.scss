@@ -1,0 +1,90 @@
+@use "../../../scss/util/" as u;
+
+.inventory {
+  padding-inline: var(--PADDING-INLINE-SM);
+  padding-block: var(--PADDING-BLOCK-SM);
+  min-height: 100svh;
+
+  &__info {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: var(--M-GAP);
+
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--SUB-COLOR-DARK);
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      border-radius: 10px;
+      gap: var(--SM-GAP);
+
+      i {
+        display: grid;
+        place-items: center;
+
+        svg {
+          height: 30px;
+          width: 30px;
+          fill: white;
+        }
+      }
+
+      p {
+        color: white;
+        font-weight: 700;
+
+        &:nth-child(2) {
+          color: rgba(255, 255, 255, 0.856);
+        }
+      }
+
+      &:nth-child(2) {
+        background-color: var(--MAIN-COLOR);
+      }
+
+      &:nth-child(3) {
+        background-color: var(--SUB-COLOR);
+      }
+    }
+  }
+
+  .sub-text {
+    color: var(--FONT-COLOR-SUB);
+    margin-top: u.rem(50);
+  }
+
+  &__carousell {
+    margin-top: u.rem(25);
+
+    .carousell-container {
+      padding: 15px 10px;
+      max-width: 150px;
+      border-radius: u.rem(10);
+      display: flex;
+      flex-direction: column;
+      gap: var(--SM-GAP);
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+      figure {
+        min-height: u.rem(100);
+        border: 1px solid var(--MAIN-COLOR);
+      }
+
+      p {
+        color: var(--SUB-COLOR-DARK);
+        font-weight: 700;
+
+        &:nth-child(2),
+        &:nth-child(4) {
+          color: var(--FONT-COLOR-SUB);
+          font-size: u.rem(12);
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@
   padding-inline: var(--PADDING-INLINE-SM);
   padding-block: var(--PADDING-BLOCK-SM);
   min-height: 100svh;
+  position: relative;
 
   &__info {
     margin-top: 50px;
@@ -58,10 +59,10 @@
     margin-top: u.rem(50);
   }
 
-  &__carousell {
+  &__carousel {
     margin-top: u.rem(25);
 
-    .carousell-container {
+    .carousel-container {
       padding: 15px 10px;
       max-width: 150px;
       border-radius: u.rem(10);
@@ -83,6 +84,63 @@
         &:nth-child(4) {
           color: var(--FONT-COLOR-SUB);
           font-size: u.rem(12);
+        }
+      }
+    }
+  }
+
+  .add-button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    bottom: u.rem(20);
+    background-color: var(--MAIN-COLOR);
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    box-shadow: var(--BOX-SHADOW);
+    display: grid;
+    place-items: center;
+    border: none;
+    cursor: pointer;
+
+    i {
+      display: grid;
+      place-items: center;
+      fill: white;
+
+      svg {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+
+  .add-menu {
+    position: absolute;
+    bottom: u.rem(70);
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: var(--SM-GAP);
+      align-items: center;
+      justify-content: center;
+
+      li {
+        padding: u.rem(10);
+        border-radius: u.rem(40);
+        background-color: var(--MAIN-COLOR);
+        box-shadow: var(--BOX-SHADOW);
+
+        a {
+          font-size: u.rem(14);
+          font-weight: 700;
+          color: white;
         }
       }
     }

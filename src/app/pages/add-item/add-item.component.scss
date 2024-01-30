@@ -1,0 +1,121 @@
+@use "../../../scss/util/" as u;
+
+.add-item {
+  &__img {
+    height: 300px;
+    width: 100%;
+
+    box-shadow: var(--BOX-SHADOW);
+    position: relative;
+
+    figure {
+      height: 100%;
+      width: 100%;
+    }
+
+    .img-button {
+      position: absolute;
+      height: u.rem(100);
+      width: u.rem(100);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--MAIN-COLOR);
+      border: none;
+      border-radius: 100%;
+      box-shadow: var(--BOX-SHADOW);
+
+      i {
+        display: grid;
+        place-items: center;
+
+        svg {
+          fill: white;
+          height: 50px;
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  &__form {
+    margin-top: 10px;
+    padding-inline: 3%;
+
+    p {
+      color: var(--FONT-COLOR-SUB);
+      font-weight: 700;
+      font-size: u.rem(14);
+
+      span {
+        font-weight: 400;
+      }
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      padding-inline: var(--PADDING-INLINE-SM);
+      gap: var(--SM-GAP);
+
+      label {
+        margin-top: 5px;
+        font-size: u.rem(14);
+        color: var(--SUB-COLOR);
+        font-weight: 700;
+      }
+      input {
+        padding: 15px;
+        border-radius: u.rem(10);
+        border: 1px solid var(--SUB-COLOR);
+
+        &:active {
+          border: 2px solid var(--MAIN-COLOR);
+        }
+      }
+
+      select {
+        padding: 10px;
+        border-radius: u.rem(10);
+        border: 1px solid var(--SUB-COLOR);
+        background: white;
+
+        option {
+          padding: 10px;
+        }
+      }
+
+      .price-input {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        column-gap: var(--M-GAP);
+        row-gap: var(--SM-GAP);
+
+        .price-text {
+          margin-top: 5px;
+          font-size: u.rem(14);
+          color: var(--SUB-COLOR);
+          font-weight: 700;
+        }
+
+        .total {
+          font-size: u.rem(36);
+          color: var(--SUB-COLOR-DARK);
+        }
+      }
+
+      button {
+        margin-top: u.rem(20);
+        padding: 15px;
+        border-radius: u.rem(10);
+        background-color: var(--SUB-COLOR);
+        font-weight: 700;
+        color: white;
+        border: none;
+        box-shadow: var(--BOX-SHADOW);
+      }
+    }
+  }
+}

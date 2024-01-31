@@ -3,9 +3,9 @@
 .main {
   max-width: u.rem(500);
   min-height: 100svh;
-  max-height: u.rem(1000);
 
   margin: auto;
   border: 1px solid var(--MAIN-COLOR);
   box-shadow: var(--BOX-SHADOW);
+  border-radius: u.rem(20);
 }

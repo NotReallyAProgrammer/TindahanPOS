@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AddItemComponent } from './pages/add-item/add-item.component';
+import { AllItemsComponent } from './pages/all-items/all-items.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'add-item',
     component: AddItemComponent,
+  },
+  {
+    path: 'all-items',
+    component: AllItemsComponent,
   },
 ];
 

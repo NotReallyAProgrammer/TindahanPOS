@@ -1,6 +1,7 @@
 @use "../../../scss/util/" as u;
 
 .add-item {
+  padding-bottom: u.rem(40);
   &__img {
     height: 300px;
     width: 100%;

@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AddItemComponent } from './pages/add-item/add-item.component';
 import { AllItemsComponent } from './pages/all-items/all-items.component';
+import { SalesComponent } from './pages/sales/sales.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'all-items',
     component: AllItemsComponent,
+  },
+
+  {
+    path: 'sales',
+    component: SalesComponent,
   },
 ];
 

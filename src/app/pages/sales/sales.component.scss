@@ -1,0 +1,133 @@
+@use "../../../scss/util/" as u;
+
+.sales {
+  padding-inline: var(--PADDING-INLINE-SM);
+  padding-block: var(--PADDING-BLOCK-SM);
+
+  &__dash {
+    padding-block: u.rem(15);
+    background-color: white;
+    border-radius: u.rem(10);
+    box-shadow: var(--BOX-SHADOW);
+
+    .item-container {
+      min-height: u.rem(250);
+      padding-inline: u.rem(20);
+      display: flex;
+      flex-direction: column;
+      gap: var(--SM-GAP);
+      border-bottom: 2px dashed var(--SUB-COLOR);
+
+      .item {
+        background-color: white;
+        box-shadow: var(--BOX-SHADOW);
+        padding: u.rem(10);
+        height: 60px;
+        display: flex;
+        gap: var(--M-GAP);
+        border-radius: u.rem(10);
+
+        figure {
+          height: 100%;
+          width: 45px;
+          background-color: var(--SUB-COLOR);
+        }
+        .item-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          .price-container {
+            display: flex;
+            gap: var(--SM-GAP);
+            align-items: center;
+          }
+          h4 {
+            font-size: u.rem(14);
+          }
+
+          p {
+            font-size: u.rem(12);
+            font-weight: 700;
+            color: var(--FONT-COLOR-SUB);
+          }
+        }
+
+        .quantity {
+          display: flex;
+          align-items: center;
+          gap: var(--SM-GAP);
+          margin-left: auto;
+          background-color: var(--MAIN-COLOR);
+          height: 100%;
+          width: max-content;
+          border-radius: u.rem(20);
+
+          p {
+            color: white;
+            font-weight: 700;
+            -webkit-user-select: none;
+            user-select: none;
+          }
+          button {
+            background-color: var(--MAIN-COLOR);
+            border: none;
+            padding: u.rem(5);
+            cursor: pointer;
+            border-radius: 20px;
+
+            i {
+              display: grid;
+              place-items: center;
+
+              svg {
+                fill: white;
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .payment-container {
+      margin-top: u.rem(20);
+      padding-inline: var(--PADDING-INLINE-SM);
+
+      .payment {
+        display: flex;
+        justify-content: space-around;
+
+        p {
+          font-size: u.rem(18);
+          font-weight: 700;
+          margin-right: u.rem(20);
+        }
+        .end {
+          margin-left: auto;
+        }
+      }
+
+      .border {
+        width: 100%;
+        height: 2px;
+        background-color: var(--SUB-COLOR);
+        margin-top: u.rem(20);
+        opacity: 0.5;
+      }
+
+      button {
+        background-color: var(--SUB-COLOR);
+        color: white;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        margin-top: u.rem(20);
+        font-weight: 700;
+        border-radius: u.rem(20);
+        box-shadow: var(--BOX-SHADOW);
+      }
+    }
+  }
+}

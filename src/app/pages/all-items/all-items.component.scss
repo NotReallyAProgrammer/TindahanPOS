@@ -4,6 +4,10 @@
   padding-block: u.rem(50);
   padding-inline: var(--PADDING-INLINE-SM);
 
+  h2 {
+    font-size: u.rem(40);
+  }
+
   .search-container {
     width: 90%;
     height: 40px;
@@ -40,6 +44,122 @@
       svg {
         height: 25px;
         width: 25px;
+      }
+    }
+  }
+
+  &__categories {
+    margin-top: u.rem(40);
+
+    .categories-carousel {
+      margin-top: u.rem(20);
+
+      button {
+        height: 150px;
+        width: 150px;
+        background: white;
+        box-shadow: var(--BOX-SHADOW);
+        border-radius: u.rem(10);
+        border: none;
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        background: rgb(255, 255, 255);
+        background: var(--CAROUSEL-BG-GRADIENT);
+
+        figure {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          top: 0;
+          right: 0;
+          z-index: -1;
+
+          img {
+            width: 100%;
+            height: auto;
+            opacity: 0.6;
+          }
+        }
+
+        p {
+          font-size: u.rem(34);
+          font-weight: 700;
+          color: white;
+        }
+      }
+    }
+  }
+
+  &__display {
+    margin-top: u.rem(40);
+
+    .display-info-container {
+      margin-top: u.rem(20);
+      display: flex;
+      flex-direction: column;
+      gap: var(--M-GAP);
+
+      .display-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 90px;
+        width: 100%;
+        background-color: white;
+        border-radius: u.rem(10);
+        padding: 10px 15px;
+        gap: var(--M-GAP);
+
+        figure {
+          height: 100%;
+          width: 80px;
+          background-color: var(--SUB-COLOR);
+          border-radius: u.rem(10);
+        }
+        .item-info {
+          display: flex;
+          flex-direction: column;
+          gap: u.rem(5);
+
+          .price-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--SM-GAP);
+          }
+
+          p {
+            font-size: u.rem(14);
+            font-weight: 700;
+            color: var(--SUB-COLOR);
+
+            span {
+              color: var(--SUB-COLOR-DARK);
+            }
+          }
+        }
+
+        button {
+          height: 40px;
+          width: 40px;
+          border: none;
+          border-radius: 100%;
+          box-shadow: var(--BOX-SHADOW);
+          background-color: var(--MAIN-COLOR);
+          margin-left: auto;
+          i {
+            display: grid;
+            place-items: center;
+
+            svg {
+              height: 15px;
+              width: 15px;
+            }
+          }
+        }
       }
     }
   }

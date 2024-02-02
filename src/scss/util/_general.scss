@@ -1,4 +1,11 @@
 :root {
   //BOX SHADOW
   --BOX-SHADOW: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  //GRADIENT
+  --CAROUSEL-BG-GRADIENT: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(150, 148, 149, 1) 100%
+  );
 }

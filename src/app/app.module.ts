@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +12,9 @@ import { AddItemComponent } from './pages/add-item/add-item.component';
 import { AllItemsComponent } from './pages/all-items/all-items.component';
 import { SalesComponent } from './pages/sales/sales.component';
 
+import { ReceiptComponent } from './pages/receipt/receipt.component';
+import { CreditComponent } from './pages/credit/credit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,15 +22,13 @@ import { SalesComponent } from './pages/sales/sales.component';
     InventoryComponent,
     AddItemComponent,
     AllItemsComponent,
-    SalesComponent
+    SalesComponent,
+
+    ReceiptComponent,
+      CreditComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -130,4 +130,118 @@
       }
     }
   }
+
+  &__item {
+    margin-top: u.rem(20);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    input {
+      padding: u.rem(10) u.rem(15);
+      width: 100%;
+      margin-inline: auto;
+      border: none;
+      border-radius: u.rem(10);
+      box-shadow: var(--BOX-SHADOW);
+
+      &:active {
+        border: 2px solid var(--MAIN-COLOR);
+      }
+    }
+
+    .item-container {
+      margin-top: u.rem(20);
+      align-self: flex-start;
+
+      .item-carousel {
+        margin-top: u.rem(15);
+        button {
+          height: 90px;
+          width: 120px;
+          background: white;
+          box-shadow: var(--BOX-SHADOW);
+          border-radius: u.rem(10);
+          border: none;
+          display: grid;
+          place-items: center;
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+          background: rgb(255, 255, 255);
+          background: var(--CAROUSEL-BG-GRADIENT);
+
+          figure {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            z-index: -1;
+
+            img {
+              width: 100%;
+              height: auto;
+              opacity: 0.6;
+            }
+          }
+
+          p {
+            font-size: u.rem(24);
+            font-weight: 700;
+            color: white;
+          }
+        }
+      }
+
+      .item-all {
+        margin-top: u.rem(20);
+
+        .all-container {
+          margin-top: u.rem(10);
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--SM-GAP);
+
+          button {
+            max-height: u.rem(200);
+
+            padding: u.rem(8);
+            display: flex;
+            flex-direction: column;
+            gap: var(--SM-GAP);
+            border: none;
+            border-radius: u.rem(10);
+            box-shadow: var(--BOX-SHADOW);
+
+            figure {
+              width: 100%;
+              height: 90px;
+              border-radius: u.rem(10);
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+              }
+            }
+
+            p {
+              font-size: u.rem(14);
+              font-weight: 700;
+            }
+
+            .bottom-row {
+              display: flex;
+              gap: var(--SM-GAP);
+
+              p {
+                font-size: u.rem(12);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

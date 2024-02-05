@@ -5,6 +5,8 @@ import { InventoryComponent } from './pages/inventory/inventory.component';
 import { AddItemComponent } from './pages/add-item/add-item.component';
 import { AllItemsComponent } from './pages/all-items/all-items.component';
 import { SalesComponent } from './pages/sales/sales.component';
+import { ReceiptComponent } from './pages/receipt/receipt.component';
+import { CreditComponent } from './pages/credit/credit.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,16 @@ const routes: Routes = [
   {
     path: 'sales',
     component: SalesComponent,
+  },
+
+  {
+    path: 'receipt',
+    component: ReceiptComponent,
+  },
+
+  {
+    path: 'credit',
+    component: CreditComponent,
   },
 ];
 

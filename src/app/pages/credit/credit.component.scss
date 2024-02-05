@@ -1,0 +1,81 @@
+@use "../../../scss/util/" as u;
+
+.credit {
+  min-height: 100svh;
+
+  &__compute {
+    height: u.rem(250);
+
+    background-color: var(--SUB-COLOR);
+    color: white;
+    padding: u.rem(20);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: var(--BOX-SHADOW);
+
+    .border {
+      width: 2px;
+      height: 100%;
+      background-color: white;
+    }
+
+    .compute-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: u.rem(5);
+
+      h2 {
+        font-size: u.rem(50);
+        line-height: 1.5;
+      }
+    }
+  }
+
+  &__info {
+    padding-inline: var(--PADDING-INLINE-SM);
+    margin-top: u.rem(20);
+
+    input {
+      border: none;
+      padding: u.rem(10) u.rem(15);
+      border-radius: u.rem(10);
+      width: 100%;
+    }
+
+    .info-container {
+      display: flex;
+      align-items: center;
+      gap: var(--SM-GAP);
+      margin-top: u.rem(40);
+
+      p {
+        font-weight: 700;
+
+        &:last-child {
+          color: var(--MAIN-COLOR);
+          background-color: white;
+          padding: u.rem(10) u.rem(15);
+          border-radius: u.rem(20);
+          margin-left: auto;
+          box-shadow: var(--BOX-SHADOW);
+        }
+      }
+      i {
+        display: grid;
+        place-items: center;
+        padding: u.rem(10);
+        background-color: white;
+        border-radius: 100%;
+        box-shadow: var(--BOX-SHADOW);
+
+        svg {
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+}

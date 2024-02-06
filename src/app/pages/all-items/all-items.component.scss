@@ -51,6 +51,32 @@
   &__categories {
     margin-top: u.rem(40);
 
+    .categories-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        background-color: var(--MAIN-COLOR);
+        border: none;
+        border-radius: 100%;
+        padding: u.rem(5);
+        box-shadow: var(--BOX-SHADOW);
+
+        i {
+          display: grid;
+          place-items: center;
+
+          svg {
+            height: 24px;
+            width: 24px;
+            fill: white;
+          }
+        }
+      }
+    }
+
     .categories-carousel {
       margin-top: u.rem(20);
 

@@ -1,0 +1,70 @@
+@use "../../../scss/util/" as u;
+
+.signup {
+  height: 60svh;
+  padding-inline: var(--PADDING-INLINE-SM);
+  margin-block: auto;
+  h1 {
+    font-size: u.rem(60);
+    width: u.rem(150);
+    color: var(--MAIN-COLOR);
+    margin-top: 30%;
+    margin-bottom: u.rem(40);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--SM-GAP);
+
+    label {
+      font-weight: 700;
+      font-size: u.rem(14);
+    }
+
+    input {
+      padding: u.rem(10);
+      border: none;
+      border-radius: u.rem(10);
+      box-shadow: var(--BOX-SHADOW);
+    }
+
+    .bottom-container {
+      display: flex;
+      align-items: center;
+      gap: u.rem(5);
+
+      p {
+        font-size: u.rem(14);
+      }
+
+      a {
+        margin-left: auto;
+        color: var(--MAIN-COLOR);
+        font-size: u.rem(14);
+        font-weight: 700;
+      }
+    }
+
+    button {
+      border: none;
+      padding: u.rem(10);
+      background-color: var(--SUB-COLOR);
+      color: white;
+      border-radius: u.rem(10);
+      font-weight: 700;
+      margin-top: u.rem(20);
+      margin-bottom: u.rem(10);
+      box-shadow: var(--BOX-SHADOW);
+    }
+
+    p {
+      font-size: u.rem(14);
+
+      a {
+        font-weight: 700;
+        color: var(--MAIN-COLOR);
+      }
+    }
+  }
+}

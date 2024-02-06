@@ -43,13 +43,16 @@
       padding: u.rem(10) u.rem(15);
       border-radius: u.rem(10);
       width: 100%;
+      margin-bottom: u.rem(30);
     }
 
     .info-container {
       display: flex;
       align-items: center;
       gap: var(--SM-GAP);
-      margin-top: u.rem(40);
+
+      padding: u.rem(10);
+      border-radius: u.rem(10);
 
       p {
         font-weight: 700;
@@ -74,6 +77,15 @@
         svg {
           height: 20px;
           width: 20px;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background-color: var(--SUB-COLOR);
+
+        p:nth-child(2) {
+          color: white;
         }
       }
     }

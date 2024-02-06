@@ -14,6 +14,8 @@ import { SalesComponent } from './pages/sales/sales.component';
 
 import { ReceiptComponent } from './pages/receipt/receipt.component';
 import { CreditComponent } from './pages/credit/credit.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CreditComponent } from './pages/credit/credit.component';
 
     ReceiptComponent,
       CreditComponent,
+      LoginComponent,
+      SignUpComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideClientHydration()],

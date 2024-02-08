@@ -66,5 +66,15 @@
         color: var(--MAIN-COLOR);
       }
     }
+    .login-error {
+      padding: u.rem(12);
+      background: rgba(255, 128, 128, 0.527);
+      border-radius: u.rem(10);
+
+      p {
+        color: rgb(87, 0, 0);
+        text-align: center;
+      }
+    }
   }
 }

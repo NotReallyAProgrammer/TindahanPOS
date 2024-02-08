@@ -1,12 +1,29 @@
 <section class="login">
   <h1>LOG IN</h1>
 
-  <form action="" class="login__form">
+  <form
+    #f="ngForm"
+    action=""
+    class="login__form"
+    (ngSubmit)="onSubmit(f.value)"
+  >
+    <div class="login-error" *ngIf="isSuccess">
+      <p>The Email or Password is Wrong</p>
+    </div>
+
     <Label>Email</Label>
-    <input type="email" title="Email Input" placeholder="Email Here..." />
+    <input
+      ngModel
+      name="email"
+      type="email"
+      title="Email Input"
+      placeholder="Email Here..."
+    />
 
     <Label>Password</Label>
     <input
+      ngModel
+      name="password"
       type="password"
       title="Password Input"
       placeholder="Password Here..."

@@ -1,28 +1,98 @@
 <section class="signup">
   <h1>SIGN UP</h1>
 
-  <form action="" class="signup__form">
-    <Label>Full Name</Label>
-    <input type="text" title="Name Input" placeholder="Full Name Here..." />
+  <form #f="ngForm" class="signup__form" (ngSubmit)="register(f.value)">
+    <div class="error-banner" *ngIf="isPassword">
+      <p>Password did not match</p>
+    </div>
 
-    <Label>Email</Label>
-    <input type="email" title="Email Input" placeholder="Email Here..." />
+    <div class="error-banner" *ngIf="isExist">
+      <p>Email Already Exist</p>
+    </div>
 
-    <Label>Password</Label>
-    <input
-      type="password"
-      title="Password Input"
-      placeholder="Password Here..."
-    />
+    <div class="input-container">
+      <Label>Full Name</Label>
+      <input
+        type="text"
+        title="Name Input"
+        placeholder="Full Name Here..."
+        ngModel
+        name="name"
+        #Name="ngModel"
+        required
+      />
 
-    <Label>Confirm Password</Label>
-    <input
-      type="password"
-      title="Password Input"
-      placeholder="Confirm Password "
-    />
+      <div class="error-container" *ngIf="Name.touched && Name.invalid">
+        <p *ngIf="Name.errors?.['required']">Name Cannot Be Empty</p>
+      </div>
+    </div>
 
-    <button type="submit" title="Sign Up button">Sign Up</button>
+    <div class="input-container">
+      <Label>Email</Label>
+      <input
+        type="email"
+        title="Email Input"
+        placeholder="Email Here..."
+        ngModel
+        name="email"
+        #Email="ngModel"
+        required
+        email
+      />
+
+      <div class="error-container" *ngIf="Email.touched && Email.invalid">
+        <p *ngIf="Email.errors?.['required']">Email Cannot Be Empty</p>
+
+        <p *ngIf="Email.errors?.['email']">Invalid Email</p>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <Label>Password</Label>
+      <input
+        type="password"
+        title="Password Input"
+        placeholder="Password Here..."
+        ngModel
+        #Password="ngModel"
+        name="password"
+        required
+        minlength="6"
+      />
+
+      <div class="error-container" *ngIf="Password.touched && Password.invalid">
+        <p *ngIf="Password.errors?.['required']">Password Cannot Be Empty</p>
+
+        <p *ngIf="Password.errors?.['minlength']">
+          Password must contain 6 letters or number
+        </p>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <Label>Confirm Password</Label>
+      <input
+        type="password"
+        title="Password Input"
+        placeholder="Confirm Password"
+        ngModel
+        name="confirmPassword"
+        #ConfirmPassword="ngModel"
+        required
+      />
+
+      <div
+        class="error-container"
+        *ngIf="ConfirmPassword.touched && ConfirmPassword.invalid"
+      >
+        <p *ngIf="ConfirmPassword.errors?.['required']">
+          Confirm Password Cannot Be Empty
+        </p>
+      </div>
+    </div>
+    <button type="submit" title="Sign Up button" [disabled]="f.invalid">
+      Sign Up
+    </button>
 
     <p>Already have an account? <a routerLink="">Log In</a></p>
   </form>

@@ -25,35 +25,42 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [authGuard],
   },
 
   {
     path: 'inventory',
     component: InventoryComponent,
+    canActivate: [authGuard],
   },
 
   {
     path: 'add-item',
     component: AddItemComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'all-items',
     component: AllItemsComponent,
+    canActivate: [authGuard],
   },
 
   {
     path: 'sales',
     component: SalesComponent,
+    canActivate: [authGuard],
   },
 
   {
     path: 'receipt',
     component: ReceiptComponent,
+    canActivate: [authGuard],
   },
 
   {
     path: 'credit',
     component: CreditComponent,
+    canActivate: [authGuard],
   },
 ];
 

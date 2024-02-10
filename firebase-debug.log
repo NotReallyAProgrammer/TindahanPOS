@@ -1,0 +1,73 @@
+[debug] [2024-02-10T13:22:41.689Z] ----------------------------------------------------------------------
+[debug] [2024-02-10T13:22:41.692Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\asus\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-02-10T13:22:41.692Z] CLI Version:   12.4.2
+[debug] [2024-02-10T13:22:41.693Z] Platform:      win32
+[debug] [2024-02-10T13:22:41.693Z] Node Version:  v18.16.1
+[debug] [2024-02-10T13:22:41.694Z] Time:          Sat Feb 10 2024 21:22:41 GMT+0800 (Philippine Standard Time)
+[debug] [2024-02-10T13:22:41.694Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-10T13:22:41.699Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-02-10T13:22:41.758Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-10T13:22:41.759Z] > authorizing via signed-in user (whitehairbandit@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Doc\AngularStuff\Projects\TindahanPOS
+
+[debug] [2024-02-10T13:22:42.440Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-02-10T13:22:42.440Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-02-10T13:22:55.213Z] > refreshing access token with scopes: []
+[debug] [2024-02-10T13:22:55.215Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-02-10T13:22:55.215Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-10T13:22:55.859Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-02-10T13:22:55.860Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-10T13:22:55.870Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-02-10T13:22:56.708Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-02-10T13:22:56.708Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project tindahanpos (TindahanPOS) 
+[info] 
+=== Firestore Setup
+[debug] [2024-02-10T13:23:04.680Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/tindahanpos/services/firestore.googleapis.com [none]
+[debug] [2024-02-10T13:23:04.680Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/tindahanpos/services/firestore.googleapis.com x-goog-quota-user=projects/tindahanpos
+[debug] [2024-02-10T13:23:06.129Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/tindahanpos/services/firestore.googleapis.com 200
+[debug] [2024-02-10T13:23:06.129Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/tindahanpos/services/firestore.googleapis.com [omitted]
+[debug] [2024-02-10T13:23:06.129Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/tindahanpos/databases/(default) [none]
+[debug] [2024-02-10T13:23:07.389Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/tindahanpos/databases/(default) 200
+[debug] [2024-02-10T13:23:07.389Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/tindahanpos/databases/(default) {"name":"projects/tindahanpos/databases/(default)","uid":"f675d556-a18e-4dd2-807e-580b355a6062","createTime":"2024-02-10T13:15:40.723040Z","updateTime":"2024-02-10T13:15:40.723040Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2024-02-10T13:15:40.723040Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","etag":"IKflso/voIQDMIS4rNvtoIQD"}
+[debug] [2024-02-10T13:23:07.389Z] database_type: FIRESTORE_NATIVE
+[debug] [2024-02-10T13:23:07.390Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-10T13:23:07.390Z] > authorizing via signed-in user (whitehairbandit@gmail.com)
+[debug] [2024-02-10T13:23:07.391Z] [iam] checking project tindahanpos for permissions ["firebase.projects.get"]
+[debug] [2024-02-10T13:23:07.391Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/tindahanpos:testIamPermissions [none]
+[debug] [2024-02-10T13:23:07.391Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/tindahanpos:testIamPermissions x-goog-quota-user=projects/tindahanpos
+[debug] [2024-02-10T13:23:07.391Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tindahanpos:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-02-10T13:23:08.623Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/tindahanpos:testIamPermissions 200
+[debug] [2024-02-10T13:23:08.623Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tindahanpos:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2024-02-10T13:23:41.615Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/tindahanpos/releases pageSize=10&pageToken=
+[debug] [2024-02-10T13:23:42.966Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/tindahanpos/releases 200
+[debug] [2024-02-10T13:23:42.966Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/tindahanpos/releases {"releases":[{"name":"projects/tindahanpos/releases/firebase.storage/tindahanpos.appspot.com","rulesetName":"projects/tindahanpos/rulesets/86ffdba9-78f4-495b-b0ab-bf8440318fd6","createTime":"2024-02-10T13:22:42.510673Z","updateTime":"2024-02-10T13:22:42.510673Z"}]}
+[debug] [2024-02-10T13:23:42.966Z] No rulesets found, using default.
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 

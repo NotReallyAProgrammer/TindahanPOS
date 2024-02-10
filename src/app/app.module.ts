@@ -22,6 +22,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 // FIREBASE
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -42,8 +43,18 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() =>
+      initializeApp({
+        apiKey: 'AIzaSyACrUMesiaXgwL9JXpX5KDgQzcbGQwRJfY',
+        authDomain: 'tindahanpos.firebaseapp.com',
+        projectId: 'tindahanpos',
+        storageBucket: 'tindahanpos.appspot.com',
+        messagingSenderId: '564082245258',
+        appId: '1:564082245258:web:0b788253e8f4fdb4ab3773',
+      })
+    ),
     provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

@@ -24,8 +24,10 @@ export class SignUpComponent {
     } else {
       this.authService
         .register(val.email, val.password)
+
         .then(() => {
           console.log('SUCCESS');
+          this.authService.posName(val.name, val.email);
         })
         .catch((err) => {
           this.isExist = !this.isExist;

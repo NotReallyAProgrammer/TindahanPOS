@@ -3,6 +3,7 @@
 .all {
   padding-block: u.rem(50);
   padding-inline: var(--PADDING-INLINE-SM);
+  position: relative;
 
   h2 {
     font-size: u.rem(40);
@@ -185,6 +186,73 @@
               width: 15px;
             }
           }
+        }
+      }
+    }
+  }
+
+  .category-input {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    min-height: u.rem(300);
+    width: 90%;
+    padding: u.rem(20);
+    background-color: white;
+    border-radius: u.rem(20);
+    box-shadow: var(--BOX-SHADOW);
+    z-index: 1;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      gap: var(--SM-GAP);
+
+      label {
+        font-size: u.rem(14);
+        font-weight: 700;
+      }
+      figure {
+        height: 200px;
+        width: 100%;
+        background-color: gainsboro;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+
+      input {
+        height: 100%;
+        border: none;
+        padding: 10px;
+        border-radius: u.rem(10);
+        color: var(--FONT-COLOR-SUB);
+        box-shadow: var(--BOX-SHADOW);
+        &:active {
+          border: none;
+        }
+      }
+
+      button {
+        background-color: var(--MAIN-COLOR);
+        padding: u.rem(10);
+        border: none;
+        font-weight: 700;
+        color: white;
+        border-radius: u.rem(10);
+        box-shadow: var(--BOX-SHADOW);
+      }
+
+      .error-container {
+        margin-bottom: u.rem(5);
+        p {
+          font-size: u.rem(12);
+          color: var(--FONT-COLOR-ERROR);
         }
       }
     }

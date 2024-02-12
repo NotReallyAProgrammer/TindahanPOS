@@ -34,7 +34,7 @@
     <div class="categories-top">
       <h3>Categories</h3>
 
-      <button type="button" title="add button">
+      <button type="button" title="add button" (click)="openCategory()">
         <i>
           <svg
             height="32px"
@@ -226,5 +226,32 @@
         </button>
       </section>
     </div>
+  </section>
+
+  <section class="category-input" *ngIf="isCategory">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <label for="">Category Name</label>
+      <input
+        type="text"
+        title="Name Input"
+        placeholder="Category Name Here"
+        ngModel
+        name="name"
+        #Name="ngModel"
+        required
+      />
+      <div class="error-container" *ngIf="Name.touched && Name.invalid">
+        <p *ngIf="Name.errors?.['required']">Category Name Cannot Be Empty</p>
+      </div>
+      <label for="">Select Image</label>
+      <input type="file" title="img select" (change)="showPreview($event)" />
+      <figure>
+        <img [src]="imgSrc" alt="Category Img" />
+      </figure>
+
+      <button type="submit" title="Category" [disabled]="f.invalid">
+        Submit
+      </button>
+    </form>
   </section>
 </section>

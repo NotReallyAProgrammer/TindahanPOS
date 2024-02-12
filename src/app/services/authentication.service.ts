@@ -5,15 +5,7 @@ import {
   createUserWithEmailAndPassword,
 } from '@angular/fire/auth';
 
-import {
-  Firestore,
-  collection,
-  addDoc,
-  collectionData,
-  doc,
-  updateDoc,
-  deleteDoc,
-} from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +23,7 @@ export class AuthenticationService {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
+  //
   posName(name: string, email: string) {
     let data = { Name: name };
     const dbInstance = collection(this.firestore, `${email}`);

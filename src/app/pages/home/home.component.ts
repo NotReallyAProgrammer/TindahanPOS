@@ -18,10 +18,12 @@ export class HomeComponent implements OnInit {
   router = inject(Router);
   dashService = inject(DashboardService);
 
-  email: string = JSON.parse(localStorage.getItem('user') || '{}').email;
+  email: string = JSON.parse(localStorage.getItem('user') || '{}').uid;
 
   ngOnInit(): void {
     this.loadName();
+
+    console.log(this.email);
   }
 
   loadName() {

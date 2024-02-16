@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Categories } from '../../models/categories';
 import { DashboardService } from '../../services/dashboard.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ImgtowebpService } from '../../services/imgtowebp.service';
-
-import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { LoadingService } from '../../services/loading.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-all-items',
@@ -12,7 +12,15 @@ import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
   styleUrl: './all-items.component.scss',
 })
 export class AllItemsComponent {
+  // INJECT
+  dashService = inject(DashboardService);
+  imgConverter = inject(ImgtowebpService);
+  loader = inject(LoadingService);
+  http = inject(HttpClient);
+
+  //
   isCategory: boolean = false;
+  isDelCategory: boolean = false;
   imgSrc!: any;
   selectedImg: any;
 
@@ -20,16 +28,18 @@ export class AllItemsComponent {
 
   //observable
   $data!: Observable<Array<any>>;
+  loading$ = this.loader.loading$;
 
-  dashService = inject(DashboardService);
-  imgConverter = inject(ImgtowebpService);
-  private readonly storage: Storage = inject(Storage);
   ngOnInit(): void {
     this.loadData();
   }
 
   openCategory(): void {
     this.isCategory = !this.isCategory;
+  }
+
+  openDelCategory(): void {
+    this.isDelCategory = !this.isDelCategory;
   }
 
   // loadData
@@ -49,26 +59,20 @@ export class AllItemsComponent {
   }
 
   onSubmit(val: any) {
-    //CONVERT IMG TO WEBP
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
-
-    let userImg = new Image();
-    userImg.src = val.categoryImg;
-
-    userImg.onload = function () {
-      canvas.width = userImg.width;
-      canvas.height = userImg.height;
-      ctx?.drawImage(userImg, 0, 0);
-    };
+    this.isCategory = !this.isCategory;
 
     let categoryData: Categories = {
       category: val.category,
-      categoryImg: canvas.toDataURL('image/webp', 1),
+      categoryImg: this.imgSrc,
     };
 
-    this.dashService.uploadImage(this.imgSrc, categoryData).then(() => {
-      console.log('success');
-    });
+    this.dashService.uploadImage(this.selectedImg, categoryData).then(() => {});
+  }
+
+  //Delete Category
+  deleteCategory(data: any) {
+    console.log(data);
+
+    this.dashService.deleteImg(data);
   }
 }

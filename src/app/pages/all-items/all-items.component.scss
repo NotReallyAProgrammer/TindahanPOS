@@ -59,21 +59,33 @@
       justify-content: space-between;
       align-items: center;
 
-      button {
-        background-color: var(--MAIN-COLOR);
-        border: none;
-        border-radius: 100%;
-        padding: u.rem(5);
-        box-shadow: var(--BOX-SHADOW);
+      .button-container {
+        margin-left: auto;
 
-        i {
-          display: grid;
-          place-items: center;
+        display: flex;
+        align-items: center;
+        gap: var(--SM-GAP);
 
-          svg {
-            height: 24px;
-            width: 24px;
-            fill: white;
+        button {
+          background-color: var(--MAIN-COLOR);
+          border: none;
+          border-radius: 100%;
+          padding: u.rem(5);
+          box-shadow: var(--BOX-SHADOW);
+
+          i {
+            display: grid;
+            place-items: center;
+
+            svg {
+              height: 24px;
+              width: 24px;
+              fill: white;
+            }
+          }
+
+          &:last-child {
+            background-color: var(--ERROR-BG-COLOR);
           }
         }
       }
@@ -114,8 +126,9 @@
 
             img {
               width: 100%;
-              height: auto;
-              opacity: 0.6;
+              height: 100%;
+              opacity: 0.5;
+              object-fit: cover;
             }
           }
 
@@ -123,6 +136,9 @@
             font-size: u.rem(34);
             font-weight: 700;
             color: white;
+            background-color: var(--BG-COLOR-HOVER);
+            padding: u.rem(10);
+            border-radius: u.rem(10);
           }
         }
       }
@@ -186,6 +202,7 @@
           box-shadow: var(--BOX-SHADOW);
           background-color: var(--MAIN-COLOR);
           margin-left: auto;
+
           i {
             display: grid;
             place-items: center;
@@ -253,13 +270,35 @@
       }
 
       button {
-        background-color: var(--MAIN-COLOR);
+        background-color: var(--SUB-COLOR);
         padding: u.rem(10);
         border: none;
-        font-weight: 700;
-        color: white;
+
         border-radius: u.rem(10);
         box-shadow: var(--BOX-SHADOW);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: var(--SM-GAP);
+
+        .loading {
+          height: 24px;
+          width: 24px;
+          display: grid;
+          place-items: center;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+
+        p {
+          font-weight: 700;
+          color: white;
+        }
       }
 
       .error-container {
@@ -267,6 +306,80 @@
         p {
           font-size: u.rem(12);
           color: var(--FONT-COLOR-ERROR);
+        }
+      }
+    }
+  }
+
+  .category-delete {
+    position: absolute;
+    padding-inline: var(--PADDING-INLINE-SM);
+    right: 0;
+    left: 0;
+
+    bottom: u.rem(10);
+    min-height: u.rem(300);
+    max-height: u.rem(500);
+    padding: u.rem(20);
+    background-color: white;
+    border-radius: u.rem(20);
+    box-shadow: var(--BOX-SHADOW);
+    z-index: 1;
+    overflow: hidden;
+    -webkit-animation: scale-in-ver-bottom 0.2s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: scale-in-ver-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+
+    figure {
+      height: 50px;
+      width: 50px;
+
+      img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: fill;
+      }
+    }
+
+    .category-container {
+      overflow: scroll;
+      height: 400px;
+      width: auto;
+      padding: u.rem(30);
+      .category-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--SM-GAP);
+
+        padding: u.rem(10);
+        border-radius: u.rem(10);
+
+        p {
+          font-weight: 700;
+        }
+
+        button {
+          background: none;
+          border: none;
+          margin-left: auto;
+          cursor: pointer;
+          i {
+            display: grid;
+            place-items: center;
+
+            svg {
+              height: 30px;
+              width: 30px;
+              fill: var(--FONT-COLOR-ERROR);
+            }
+          }
+        }
+
+        &:hover {
+          background-color: var(--BG-COLOR-HOVER);
         }
       }
     }

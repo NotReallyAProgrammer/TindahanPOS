@@ -34,25 +34,60 @@
     <div class="categories-top">
       <h3>Categories</h3>
 
-      <button type="button" title="add button" (click)="openCategory()">
-        <i>
-          <svg
-            height="32px"
-            id="Layer_1"
-            style="enable-background: new 0 0 32 32"
-            version="1.1"
-            viewBox="0 0 32 32"
-            width="32px"
-            xml:space="preserve"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"
-            />
-          </svg>
-        </i>
-      </button>
+      <div class="button-container">
+        <button type="button" title="Add Category" (click)="openCategory()">
+          <i>
+            <svg
+              height="32px"
+              id="Layer_1"
+              style="enable-background: new 0 0 32 32"
+              version="1.1"
+              viewBox="0 0 32 32"
+              width="32px"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"
+              />
+            </svg>
+          </i>
+        </button>
+
+        <button
+          type="button"
+          title="Delete Category"
+          (click)="openDelCategory()"
+        >
+          <i>
+            <svg
+              style="enable-background: new 0 0 24 24"
+              version="1.1"
+              viewBox="0 0 24 24"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <style type="text/css">
+                .st0 {
+                  opacity: 0.2;
+                  fill: none;
+                  stroke: #000000;
+                  stroke-width: 5e-2;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <g id="grid_system" />
+              <g id="_icons">
+                <path
+                  d="M5.3,18.7C5.5,18.9,5.7,19,6,19s0.5-0.1,0.7-0.3l5.3-5.3l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3   c0.4-0.4,0.4-1,0-1.4L13.4,12l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L12,10.6L6.7,5.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4   l5.3,5.3l-5.3,5.3C4.9,17.7,4.9,18.3,5.3,18.7z"
+                />
+              </g>
+            </svg>
+          </i>
+        </button>
+      </div>
     </div>
 
     <div class="carousel-container">
@@ -60,11 +95,9 @@
         <button type="button" class="Categories Carousel">
           <figure>
             <img
-              src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-              alt="Noodles"
-              title="Noodles Background"
-              height="4955"
-              width="3890"
+              [src]="data.categoryImg"
+              alt="Category Image"
+              title="Category Background"
             />
           </figure>
           <p>{{ data.category }}</p>
@@ -160,9 +193,49 @@
         <img [src]="imgSrc" alt="Category Img" />
       </figure>
 
-      <button type="submit" title="Category" [disabled]="f.invalid">
-        Submit
+      <button type="submit" title="Category" [disabled]="f.invalid && loading$">
+        <i class="loading" *ngIf="loading$ | async">
+          <img src="../../../assets/gif/Rolling-1s-200px.gif" alt="" />
+        </i>
+        <p>Submit</p>
       </button>
     </form>
+  </section>
+
+  <section class="category-delete" *ngIf="isDelCategory">
+    <h3>Delete Category</h3>
+
+    <div class="category-container">
+      <div
+        class="category-info"
+        *ngFor="let data of $data | async; let id = index"
+      >
+        <figure>
+          <img [src]="data.categoryImg" alt="" />
+        </figure>
+        <p>{{ data.category }}</p>
+
+        <button
+          type="submit"
+          title="Delete Category"
+          (click)="deleteCategory(data)"
+        >
+          <i>
+            <svg
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h48v48H0V0z" fill="none" />
+              <path
+                d="M12 38c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V14H12v24zm4.93-14.24l2.83-2.83L24 25.17l4.24-4.24 2.83 2.83L26.83 28l4.24 4.24-2.83 2.83L24 30.83l-4.24 4.24-2.83-2.83L21.17 28l-4.24-4.24zM31 8l-2-2H19l-2 2h-7v4h28V8z"
+              />
+              <path d="M0 0h48v48H0z" fill="none" />
+            </svg>
+          </i>
+        </button>
+      </div>
+    </div>
   </section>
 </section>

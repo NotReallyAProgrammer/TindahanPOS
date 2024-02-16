@@ -11,6 +11,7 @@ import {
 
 import {
   Storage,
+  deleteObject,
   getDownloadURL,
   ref,
   uploadBytes,
@@ -53,26 +54,31 @@ export class DashboardService {
     });
   }
 
-  //UPLOAD IMG TO FIREBASE
-  // uploadImg(selectedImg: any, data: any): void {
-  //   const filepath = `categoryIMG/${Date.now}`;
-
-  //   this.storage.upload(filepath, selectedImg).then(() => {
-  //     console.log('Image Uploaded');
-
-  //     this.storage
-  //       .ref(filepath)
-  //       .getDownloadURL()
-  //       .subscribe((url) => {
-  //         data.categoryImg = url;
-  //       });
-  //   });
-  // }
-
+  //Upload Image
   async uploadImage(imgUrl: any, data: any) {
-    const filepath = `categoryIMG/${Date.now}`;
+    const filepath = `categoryIMG/${Date.now()}`;
     const storageRef = ref(this.storage, filepath);
     const uploadTask = await uploadBytes(storageRef, imgUrl);
     const downloadUrl = await getDownloadURL(uploadTask.ref);
+    data.categoryImg = downloadUrl;
+    this.saveCategory(data);
+  }
+
+  deleteCategory(id: string) {
+    const docInstance = doc(
+      this.firestore,
+      `${this.email}/categories/${this.uid}`,
+      id
+    );
+    return deleteDoc(docInstance).then(() => {
+      console.log('SUCCESS');
+    });
+  }
+
+  deleteImg(data: any) {
+    const deleteRef = ref(this.storage, data.url);
+    return deleteObject(deleteRef).then(() => {
+      this.deleteCategory(data.id);
+    });
   }
 }

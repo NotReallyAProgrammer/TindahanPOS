@@ -24,6 +24,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -56,8 +58,17 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+
+    HttpClientModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

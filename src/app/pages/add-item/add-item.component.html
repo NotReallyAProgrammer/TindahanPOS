@@ -1,8 +1,16 @@
 <section class="add-item">
   <section class="add-item__img">
-    <figure></figure>
+    <figure>
+      <img [src]="imgSrc" alt="Item Banner" />
+    </figure>
 
-    <button type="button" title="camera button" class="img-button">
+    <button
+      type="button"
+      title="camera button"
+      class="img-button"
+      *ngIf="selectedImg == ''"
+      (click)="uploader.click()"
+    >
       <i>
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -11,11 +19,13 @@
         </svg>
       </i>
     </button>
+
+    <input hidden type="file" #uploader (change)="showPreview($event)" />
   </section>
 
   <section class="add-item__form">
-    <p>Barcode No: <span>1312923299</span></p>
-    <form action="">
+    <p *ngIf="itemBarcode != ''">Barcode No: <span>1312923299</span></p>
+    <form #f="ngForm" action="" (submit)="onSubmit(f.value)">
       <label for="">Item</label>
       <input
         type="text"
@@ -23,7 +33,14 @@
         id=""
         title="Item Name"
         placeholder="Item Name Here"
+        ngModel
+        name="itemName"
+        #itemName="ngModel"
+        required
       />
+      <div class="error-container" *ngIf="itemName.touched && itemName.invalid">
+        <p *ngIf="itemName.errors?.['required']">Name Cannot Be Empty</p>
+      </div>
 
       <label for="">Quantity</label>
       <input
@@ -33,29 +50,76 @@
         title="Item Name"
         min="0"
         placeholder="Quantity"
+        ngModel
+        name="itemQty"
+        #itemQty="ngModel"
+        required
       />
+
+      <div class="error-container" *ngIf="itemQty.touched && itemQty.invalid">
+        <p *ngIf="itemQty.errors?.['required']">Quantity Cannot Be Empty</p>
+      </div>
 
       <div class="price-input">
         <label for="">Price(PHP)</label>
         <p class="price-text">Total</p>
-        <input type="number" title="Price" placeholder="Bought Price Here" />
+        <input
+          type="number"
+          title="Price"
+          placeholder="Bought Price Here"
+          ngModel
+          name="itemPrc"
+          #itemPrc="ngModel"
+          required
+        />
         <p class="total">121,121</p>
 
         <label for="">Selling Price(PHP)</label>
         <p class="price-text">Profit</p>
-        <input type="number" title="Price" placeholder="Selling Price Here" />
+        <input
+          type="number"
+          title="Price"
+          placeholder="Selling Price Here"
+          ngModel
+          name="itemSel"
+          #itemSel="ngModel"
+          required
+        />
         <p class="total">121,121</p>
       </div>
 
-      <label for="">Category</label>
-      <select name="Category" id="" title="Category">
-        <option value="Sample Category">Sample</option>
-        <option value="Sample Category">Sample</option>
-        <option value="Sample Category">Sample</option>
-        <option value="Sample Category">Sample</option>
-      </select>
+      <div class="error-container" *ngIf="itemPrc.touched && itemPrc.invalid">
+        <p *ngIf="itemPrc.errors?.['required']">Item Price Cannot Be Empty</p>
+      </div>
 
-      <button type="submit" title="Add Item">Add Item</button>
+      <div class="error-container" *ngIf="itemSel.touched && itemSel.invalid">
+        <p *ngIf="itemSel.errors?.['required']">
+          Selling Price Cannot Be Empty
+        </p>
+      </div>
+
+      <label for="">Category</label>
+      <select
+        name="Category"
+        id=""
+        title="Category"
+        ngModel
+        name="itemCat"
+        #itemCat="ngModel"
+        required
+      >
+        <option value=""></option>
+        <option [value]="data.category" *ngFor="let data of $catData | async">
+          {{ data.category }}
+        </option>
+      </select>
+      <div class="error-container" *ngIf="itemCat.touched && itemCat.invalid">
+        <p *ngIf="itemQty.value?.['']">Quantity Cannot Be Empty</p>
+      </div>
+
+      <button type="submit" title="Add Item" [disabled]="f.invalid">
+        Add Item
+      </button>
     </form>
   </section>
 </section>

@@ -56,12 +56,25 @@ export class DashboardService {
 
   //Upload Image
   async uploadImage(imgUrl: any, data: any) {
-    const filepath = `categoryIMG/${Date.now()}`;
+    let filePathName = '';
+
+    if (data.itemName !== '') {
+      filePathName = 'itemIMG';
+    } else {
+      filePathName = 'categoryIMG';
+    }
+    const filepath = `${filePathName}/${Date.now()}`;
     const storageRef = ref(this.storage, filepath);
     const uploadTask = await uploadBytes(storageRef, imgUrl);
     const downloadUrl = await getDownloadURL(uploadTask.ref);
-    data.categoryImg = downloadUrl;
-    this.saveCategory(data);
+
+    if (data.itemName !== '') {
+      data.itemImg = downloadUrl;
+      this.saveItem(data);
+    } else if (data.catetegoryImg != '') {
+      data.categoryImg = downloadUrl;
+      this.saveCategory(data);
+    }
   }
 
   deleteCategory(id: string) {
@@ -79,6 +92,18 @@ export class DashboardService {
     const deleteRef = ref(this.storage, data.url);
     return deleteObject(deleteRef).then(() => {
       this.deleteCategory(data.id);
+    });
+  }
+
+  //Save Item
+  saveItem(data: any) {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/items`,
+      this.uid
+    );
+    return addDoc(dbInstance, data).then(() => {
+      console.log('Item Save Success');
     });
   }
 }

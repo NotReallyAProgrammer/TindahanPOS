@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Categories } from '../../models/categories';
 import { DashboardService } from '../../services/dashboard.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { ImgtowebpService } from '../../services/imgtowebp.service';
 import { LoadingService } from '../../services/loading.service';
 import { HttpClient } from '@angular/common/http';
+import { FilterItems } from '../../models/items';
 
 @Component({
   selector: 'app-all-items',
@@ -21,13 +22,17 @@ export class AllItemsComponent {
   //
   isCategory: boolean = false;
   isDelCategory: boolean = false;
+  isViewAll: boolean = false;
   imgSrc!: any;
   selectedImg: any;
 
+  itemHeader: string = 'All Items';
   webpIMG!: string;
 
   //observable
   $data!: Observable<Array<any>>;
+  $Item!: Observable<Array<any>>;
+  $itemFilter!: Observable<any[]>;
   loading$ = this.loader.loading$;
 
   ngOnInit(): void {
@@ -44,9 +49,25 @@ export class AllItemsComponent {
 
   // loadData
   loadData(): void {
+    this.isViewAll = false;
     this.$data = this.dashService.loadCategories();
-    console.log(this.$data);
+    this.$Item = this.dashService.loadItems();
   }
+
+  //filter by category
+  filterCat(val: string) {
+    this.isViewAll = !this.isViewAll;
+    this.$Item = this.dashService.loadItems();
+    this.itemHeader = val;
+
+    this.$Item = this.$Item.pipe(
+      map((item) => {
+        return item.filter((item) => item.itemCategory === val);
+      })
+    );
+  }
+
+  //filter by search
 
   //showing preview of img
   showPreview($event: any) {

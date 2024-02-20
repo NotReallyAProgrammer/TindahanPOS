@@ -7,6 +7,10 @@ import {
   deleteDoc,
   collection,
   addDoc,
+  query,
+  where,
+  QuerySnapshot,
+  getDocs,
 } from '@angular/fire/firestore';
 
 import {
@@ -38,6 +42,29 @@ export class DashboardService {
       `${this.email}/categories/${this.uid}`
     );
     return collectionData(dbInstance, { idField: 'id' });
+  }
+
+  loadItems() {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/items/${this.uid}`
+    );
+    return collectionData(dbInstance, { idField: 'id' });
+  }
+
+  //filter by category
+  async filterByCat(val: string) {
+    const itemsRef = collection(
+      this.firestore,
+      `${this.email}/items/${this.uid}`
+    );
+
+    const q = query(itemsRef, where(val, '==', true));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      return doc;
+    });
   }
 
   saveCategory(data: object) {

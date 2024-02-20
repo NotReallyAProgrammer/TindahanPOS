@@ -111,12 +111,24 @@
   <p class="sub-text">Recently Added</p>
 
   <section class="inventory__carousel">
-    <div class="carousel-container">
-      <figure></figure>
+    <div
+      class="carousel-container"
+      *ngFor="let data of $data | async | slice : 0 : 4"
+    >
+      <figure>
+        <img [src]="data.itemImg" alt="" />
+      </figure>
 
-      <p>231212212</p>
-      <p>Sample Item</p>
-      <p>Qty: <span>10</span></p>
+      <p>{{ data.itemName }}</p>
+
+      <div class="bottom-container">
+        <p>
+          Prc: <span>{{ data.itemSelling | currency : "PHP" }}</span>
+        </p>
+        <p>
+          Qty: <span>{{ data.itemQty }}</span>
+        </p>
+      </div>
     </div>
   </section>
 

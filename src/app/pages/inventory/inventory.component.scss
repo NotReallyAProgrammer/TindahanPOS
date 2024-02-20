@@ -62,10 +62,14 @@
 
   &__carousel {
     margin-top: u.rem(25);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: var(--SM-GAP);
 
     .carousel-container {
       padding: 15px 10px;
-      max-width: 150px;
+      width: u.rem(150);
       border-radius: u.rem(10);
       display: flex;
       flex-direction: column;
@@ -73,18 +77,32 @@
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
       figure {
-        min-height: u.rem(100);
+        height: u.rem(100);
         border: 1px solid var(--MAIN-COLOR);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: fill;
+        }
       }
 
       p {
         color: var(--SUB-COLOR-DARK);
         font-weight: 700;
+      }
 
-        &:nth-child(2),
-        &:nth-child(4) {
+      .bottom-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: u.rem(10);
+        p {
           color: var(--FONT-COLOR-SUB);
           font-size: u.rem(12);
+          span {
+            color: var(--SUB-COLOR-DARK);
+          }
         }
       }
     }

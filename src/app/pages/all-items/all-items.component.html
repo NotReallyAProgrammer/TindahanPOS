@@ -92,7 +92,11 @@
 
     <div class="carousel-container">
       <div class="categories-carousel" *ngFor="let data of $data | async">
-        <button type="button" class="Categories Carousel">
+        <button
+          type="button"
+          class="Categories Carousel"
+          (click)="filterCat(data.category)"
+        >
           <figure>
             <img
               [src]="data.categoryImg"
@@ -108,20 +112,38 @@
   </section>
 
   <section class="all__display">
-    <h3>All Items</h3>
+    <div class="display-header">
+      <h3>{{ itemHeader }}</h3>
+      <button type="submit" (click)="loadData()" *ngIf="isViewAll">
+        View All
+      </button>
+    </div>
 
     <div class="display-info-container">
-      <section class="display-info">
-        <figure></figure>
+      <section class="display-info" *ngFor="let item of $Item | async">
+        <figure>
+          <img [src]="item.itemImg" alt="" />
+        </figure>
 
         <div class="item-info">
-          <h4>Sample Item Name</h4>
-          <p>Quantity: <span>20</span></p>
+          <h4>{{ item.itemName }}</h4>
+          <p>
+            Quantity: <span>{{ item.itemQty }}</span>
+          </p>
 
           <div class="price-container">
-            <p>Srp: <span>10</span></p>
-            <p>Retail: <span>12</span></p>
-            <p>Profit: <span>2</span></p>
+            <p>
+              Srp: <span>{{ item.itemPrice | currency : "PHP" }}</span>
+            </p>
+            <p>
+              Retail: <span>{{ item.itemSelling | currency : "PHP" }}</span>
+            </p>
+            <p>
+              Profit:
+              <span>{{
+                item.itemSelling - item.itemPrice | currency : "PHP"
+              }}</span>
+            </p>
           </div>
         </div>
 

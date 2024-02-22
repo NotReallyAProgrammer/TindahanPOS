@@ -16,7 +16,12 @@
             <p>
               PHP: <span>{{ cart.itemPrice | currency : "PHP" }}</span>
             </p>
-            <p>Total: <span>26</span></p>
+            <p>
+              Total:
+              <span>{{
+                cart.itemQty * cart.itemPrice | currency : "PHP"
+              }}</span>
+            </p>
           </div>
         </div>
 

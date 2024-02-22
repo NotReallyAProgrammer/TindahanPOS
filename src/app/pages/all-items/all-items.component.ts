@@ -68,6 +68,14 @@ export class AllItemsComponent {
   }
 
   //filter by search
+  onSearch(filter: string) {
+    this.$Item = this.dashService.loadItems();
+    this.$Item = this.$Item.pipe(
+      map((item) => {
+        return item.filter((item) => item.itemName === filter);
+      })
+    );
+  }
 
   //showing preview of img
   showPreview($event: any) {

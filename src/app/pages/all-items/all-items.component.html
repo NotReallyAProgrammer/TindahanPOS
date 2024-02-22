@@ -8,6 +8,8 @@
       id=""
       title="search items"
       placeholder="Search..."
+      (ngModelChange)="onSearch($event)"
+      ngModel
     />
     <button type="submit" title="Search Button">
       <i>

@@ -1,19 +1,31 @@
 <section class="sales">
-  <section class="sales__dash">
+  <div class="no-item" *ngIf="cartService.cartData.length <= 0">
+    <h2 class="">Your Cart is Empty</h2>
+    <p>Looks like you haven't added anything to your cart yet</p>
+  </div>
+  <section class="sales__dash" *ngIf="cartService.cartData.length > 0">
     <div class="item-container">
-      <section class="item">
-        <figure></figure>
+      <section class="item" *ngFor="let cart of cartService.cartData">
+        <figure>
+          <img [src]="cart.itemImg" alt="" />
+        </figure>
 
         <div class="item-info">
-          <h4>Sample Item Name</h4>
+          <h4>{{ cart.itemName }}</h4>
           <div class="price-container">
-            <p>PHP: <span>13</span></p>
+            <p>
+              PHP: <span>{{ cart.itemPrice | currency : "PHP" }}</span>
+            </p>
             <p>Total: <span>26</span></p>
           </div>
         </div>
 
         <div class="quantity">
-          <button type="button" title="minus button">
+          <button
+            type="button"
+            title="minus button"
+            (click)="minusQuantity(cart)"
+          >
             <i>
               <svg
                 height="512px"
@@ -33,65 +45,13 @@
             </i>
           </button>
 
-          <p>2</p>
+          <p>{{ cart.itemQty }}</p>
 
-          <button type="button" title="plus button">
-            <i>
-              <svg
-                height="512px"
-                id="Layer_1"
-                style="enable-background: new 0 0 512 512"
-                version="1.1"
-                viewBox="0 0 512 512"
-                width="512px"
-                xml:space="preserve"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M417.4,224H288V94.6c0-16.9-14.3-30.6-32-30.6c-17.7,0-32,13.7-32,30.6V224H94.6C77.7,224,64,238.3,64,256  c0,17.7,13.7,32,30.6,32H224v129.4c0,16.9,14.3,30.6,32,30.6c17.7,0,32-13.7,32-30.6V288h129.4c16.9,0,30.6-14.3,30.6-32  C448,238.3,434.3,224,417.4,224z"
-                />
-              </svg>
-            </i>
-          </button>
-        </div>
-      </section>
-
-      <section class="item">
-        <figure></figure>
-
-        <div class="item-info">
-          <h4>Sample Item Name</h4>
-          <div class="price-container">
-            <p>PHP: <span>13</span></p>
-            <p>Total: <span>26</span></p>
-          </div>
-        </div>
-
-        <div class="quantity">
-          <button type="button" title="minus button">
-            <i>
-              <svg
-                height="512px"
-                id="Layer_1"
-                style="enable-background: new 0 0 512 512"
-                version="1.1"
-                viewBox="0 0 512 512"
-                width="512px"
-                xml:space="preserve"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M417.4,224H94.6C77.7,224,64,238.3,64,256c0,17.7,13.7,32,30.6,32h322.8c16.9,0,30.6-14.3,30.6-32  C448,238.3,434.3,224,417.4,224z"
-                />
-              </svg>
-            </i>
-          </button>
-
-          <p>2</p>
-
-          <button type="button" title="plus button">
+          <button
+            type="button"
+            title="plus button"
+            (click)="plusQuantity(cart)"
+          >
             <i>
               <svg
                 height="512px"
@@ -117,7 +77,7 @@
     <div class="payment-container">
       <div class="payment">
         <p>SubTotal</p>
-        <p class="end">{{ "24" | currency : "PHP" }}</p>
+        <p class="end">{{ cartService.getTotal() | currency : "PHP" }}</p>
       </div>
 
       <div class="border"></div>
@@ -135,17 +95,20 @@
       <h3>Categories</h3>
 
       <section class="item-carousel">
-        <button type="button" class="Categories Carousel">
+        <button
+          type="button"
+          class="Categories Carousel"
+          *ngFor="let catData of $catData | async"
+        >
           <figure>
             <img
-              src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-              alt="Noodles"
-              title="Noodles Background"
-              height="4955"
-              width="3890"
+              [src]="catData.categoryImg"
+              alt="Category Img"
+              title="Category Background"
+              loading="lazy"
             />
           </figure>
-          <p>Noodles</p>
+          <p>{{ catData.category }}</p>
         </button>
       </section>
 
@@ -153,10 +116,15 @@
         <h3>All Items</h3>
 
         <div class="all-container">
-          <button type="submit" title="item button">
+          <button
+            type="submit"
+            title="item button"
+            *ngFor="let itemData of $itemData | async"
+            (click)="addToCart(itemData)"
+          >
             <figure>
               <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
+                [src]="itemData.itemImg"
                 alt="Noodle Pic"
                 title="Item Img"
                 height="4955"
@@ -164,153 +132,17 @@
               />
             </figure>
 
-            <p>Sample Item Name</p>
+            <p>{{ itemData.itemName }}</p>
 
             <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
+              <p>
+                Qty: <span>{{ itemData.itemQty }}</span>
+              </p>
 
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <!-- COPY FOR SCROLL -->
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
-            </div>
-          </button>
-
-          <button type="submit" title="item button">
-            <figure>
-              <img
-                src="../../../assets/CategoriesBG/Noodles-CategoryBG-3890x4955.webp"
-                alt="Noodle Pic"
-                title="Item Img"
-                height="4955"
-                width="3890"
-              />
-            </figure>
-
-            <p>Sample Item Name</p>
-
-            <div class="bottom-row">
-              <p>Qty: <span>23</span></p>
-
-              <p>Price: <span>15</span></p>
+              <p>
+                Price:
+                <span>{{ itemData.itemSelling | currency : "PHP" }}</span>
+              </p>
             </div>
           </button>
         </div>

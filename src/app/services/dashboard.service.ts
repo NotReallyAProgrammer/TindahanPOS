@@ -133,4 +133,16 @@ export class DashboardService {
       console.log('Item Save Success');
     });
   }
+
+  //Upload Receipt
+  saveReceipt(data: object) {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/receipt`,
+      this.uid
+    );
+    return addDoc(dbInstance, data).then(() => {
+      console.log('Purchase Success');
+    });
+  }
 }

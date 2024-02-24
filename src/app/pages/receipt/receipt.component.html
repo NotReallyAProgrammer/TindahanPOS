@@ -1,62 +1,63 @@
 <section class="receipt">
   <section class="receipt__info">
-    <h3>Receipt: <span>#12212</span></h3>
+    <div class="header-container">
+      <h4>
+        Receipt: <span>#{{ receiptNo }}</span>
+      </h4>
+
+      <h4>
+        Date: <span>{{ date }}</span>
+      </h4>
+
+      <p>
+        Time: <span>{{ time }}</span>
+      </p>
+    </div>
 
     <section class="item-container">
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
-      </div>
-
-      <!--  -->
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
-      </div>
-
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
-      </div>
-
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
-      </div>
-
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
-      </div>
-
-      <div class="item-info">
-        <p>Sample Item Name</p>
-        <P class="price">{{ "24" | currency : "PHP" }}</P>
-        <p class="qty">Qty: <span>12</span></p>
+      <div class="item-info" *ngFor="let data of cartService.cartData">
+        <p>{{ data.itemName }}</p>
+        <P class="price">{{
+          data.itemQty * data.itemPrice | currency : "PHP"
+        }}</P>
+        <p class="qty">
+          Qty: <span>{{ data.itemQty }}</span>
+        </p>
       </div>
     </section>
 
     <section class="item-computation">
       <p>Subtotal</p>
-      <p class="price">{{ "23" | currency : "PHP" }}</p>
+      <p class="price">{{ cartService.getTotal() | currency : "PHP" }}</p>
 
       <p>Payment</p>
-      <input type="number" placeholder="Payment Here..." />
+      <input
+        #payment
+        type="number"
+        placeholder="Payment Here..."
+        (change)="paymentVal(payment.value)"
+      />
+
+      <p *ngIf="errorPayment" class="error">
+        Invalid Payment Please Check Again
+      </p>
 
       <div class="border"></div>
 
       <p>Change</p>
-      <p class="price">{{ "23" | currency : "PHP" }}</p>
+      <p class="price">{{ change | currency : "PHP" }}</p>
     </section>
   </section>
 
   <div class="button-container">
     <button type="button" title="Credit Button">Credit</button>
-    <button type="button" title="Paid Button">Paid</button>
+    <button
+      type="button"
+      title="Paid Button"
+      (click)="paid()"
+      [disabled]="errorPayment"
+    >
+      Paid
+    </button>
   </div>
 </section>

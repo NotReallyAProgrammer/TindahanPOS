@@ -104,6 +104,7 @@
           type="button"
           class="Categories Carousel"
           *ngFor="let catData of $catData | async"
+          (click)="filterCat(catData.category)"
         >
           <figure>
             <img
@@ -118,7 +119,13 @@
       </section>
 
       <section class="item-all">
-        <h3>All Items</h3>
+        <div class="header-container">
+          <h3>{{ itemHeader }}</h3>
+
+          <button type="button" *ngIf="isViewAll" (click)="loadData()">
+            View All
+          </button>
+        </div>
 
         <div class="all-container">
           <button

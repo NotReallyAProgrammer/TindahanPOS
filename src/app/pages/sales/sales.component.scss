@@ -143,6 +143,23 @@
     align-items: center;
     flex-direction: column;
 
+    .header-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      button {
+        margin-left: auto;
+        padding: u.rem(5);
+        font-size: u.rem(12);
+        color: white;
+        font-weight: 700;
+        border: none;
+        background-color: var(--MAIN-COLOR);
+        border-radius: u.rem(10);
+      }
+    }
+
     input {
       padding: u.rem(10) u.rem(15);
       width: 100%;

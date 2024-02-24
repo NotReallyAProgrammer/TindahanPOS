@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { Cart } from '../../models/cart';
 
@@ -16,13 +16,17 @@ export class SalesComponent {
   $catData!: Observable<Array<any>>;
   $itemData!: Observable<Array<any>>;
 
+  isViewAll: boolean = false;
   quantity: number = 1;
+  itemHeader: string = 'All Items';
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
+    this.isViewAll = false;
+
     this.$catData = this.dashService.loadCategories();
     this.$itemData = this.dashService.loadItems();
   }
@@ -35,6 +39,18 @@ export class SalesComponent {
     if (item.itemQty <= 0) {
       this.cartService.cartDelete(item);
     }
+  }
+
+  filterCat(val: string) {
+    this.isViewAll = !this.isViewAll;
+    this.$itemData = this.dashService.loadItems();
+    this.itemHeader = val;
+
+    this.$itemData = this.$itemData.pipe(
+      map((item) => {
+        return item.filter((item) => item.itemCategory === val);
+      })
+    );
   }
 
   addToCart(data: any) {

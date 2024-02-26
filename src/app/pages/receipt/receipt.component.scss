@@ -3,6 +3,9 @@
 .receipt {
   padding-inline: var(--PADDING-INLINE-SM);
 
+  height: 100svh;
+  position: relative;
+
   &__info {
     min-height: 70svh;
     background-color: white;
@@ -111,6 +114,38 @@
 
       &:last-child {
         background-color: var(--MAIN-COLOR);
+      }
+    }
+  }
+
+  .credit-wrapper {
+    position: absolute;
+    top: u.rem(-50);
+    bottom: u.rem(50);
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: end;
+    padding-inline: var(--PADDING-INLINE-SM);
+    .credit-container {
+      padding: var(--PADDING-INLINE-SM);
+      width: 100%;
+      border-radius: u.rem(10);
+      min-height: max-content;
+      background-color: white;
+      h3 {
+        margin-bottom: u.rem(20);
+      }
+
+      form {
+        input {
+          padding: u.rem(10);
+          border-radius: u.rem(10);
+          box-shadow: var(--BOX-SHADOW);
+          width: 100%;
+          border: 1px solid var(--SUB-COLOR);
+        }
       }
     }
   }

@@ -50,7 +50,9 @@
   </section>
 
   <div class="button-container">
-    <button type="button" title="Credit Button">Credit</button>
+    <button type="button" title="Credit Button" (click)="creditTab()">
+      Credit
+    </button>
     <button
       type="button"
       title="Paid Button"
@@ -59,5 +61,34 @@
     >
       Paid
     </button>
+  </div>
+
+  <div class="credit-wrapper glass-background" *ngIf="isCredit">
+    <section class="credit-container">
+      <h3>Credit Tab</h3>
+      <form #f="ngForm" action="" (submit)="credit(f.value)">
+        <input
+          ngModel
+          name="name"
+          #Name="ngModel"
+          type="text"
+          placeholder="Enter Name Here..."
+          required
+        />
+
+        <div class="error-container" *ngIf="Name.touched && Name.invalid">
+          <p *ngIf="Name.errors?.['required']">Name Cannot Be Empty</p>
+        </div>
+
+        <div class="name-container">
+          <div class="name"></div>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" (click)="closeCredit()">Close</button>
+          <button type="submit" [disabled]="f.invalid">Proceed</button>
+        </div>
+      </form>
+    </section>
   </div>
 </section>

@@ -145,4 +145,14 @@ export class DashboardService {
       console.log('Purchase Success');
     });
   }
+
+  saveCredit(creditName: string, data: object) {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/credits/${creditName}`
+    );
+    return addDoc(dbInstance, data).then(() => {
+      console.log('Credit Save');
+    });
+  }
 }

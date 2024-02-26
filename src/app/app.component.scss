@@ -2,11 +2,13 @@
 
 .main {
   max-width: u.rem(500);
-  min-height: 100svh;
+  height: 100svh;
 
   margin: auto;
   border: 1px solid var(--MAIN-COLOR);
   box-shadow: var(--BOX-SHADOW);
   border-radius: u.rem(20);
   overflow: hidden;
+
+  background-color: hsl(0, 0%, 93%);
 }

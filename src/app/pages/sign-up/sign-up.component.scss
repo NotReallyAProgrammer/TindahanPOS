@@ -33,14 +33,6 @@
         border-radius: u.rem(10);
         box-shadow: var(--BOX-SHADOW);
       }
-
-      .error-container {
-        margin-top: u.rem(5);
-        p {
-          font-size: u.rem(12);
-          color: var(--FONT-COLOR-ERROR);
-        }
-      }
     }
 
     .bottom-container {

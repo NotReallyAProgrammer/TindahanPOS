@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { Receipt } from '../../models/receipt';
 import { DatePipe, formatDate } from '@angular/common';
 import { DashboardService } from '../../services/dashboard.service';
+import { Credit } from '../../models/credit';
 
 @Component({
   selector: 'app-receipt',
@@ -22,6 +23,7 @@ export class ReceiptComponent {
   paymentInp: number = 0;
 
   errorPayment: boolean = false;
+  isCredit: boolean = false;
 
   paymentVal(value: any) {
     //  const paymentInput = this.payment?.nativeElement as HTMLInputElement;
@@ -53,5 +55,25 @@ export class ReceiptComponent {
 
       this.dashService.saveReceipt(receiptData);
     }
+  }
+
+  credit(val: any) {
+    let credit: Credit = {
+      creditName: val.name,
+      creditDate: this.date,
+      creditTime: this.time,
+      creditItems: this.cartService.cartData,
+      creditTotal: this.cartService.getTotal(),
+    };
+
+    this.dashService.saveCredit(val.name, credit);
+  }
+
+  creditTab() {
+    this.isCredit = !this.isCredit;
+  }
+
+  closeCredit() {
+    this.isCredit = false;
   }
 }

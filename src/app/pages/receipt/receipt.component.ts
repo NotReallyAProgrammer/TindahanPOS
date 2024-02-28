@@ -3,7 +3,9 @@ import { CartService } from '../../services/cart.service';
 import { Receipt } from '../../models/receipt';
 import { DatePipe, formatDate } from '@angular/common';
 import { DashboardService } from '../../services/dashboard.service';
-import { Credit } from '../../models/credit';
+import { Credit, CreditName } from '../../models/credit';
+import { Observable } from 'rxjs';
+import { CreditService } from '../../services/credit.service';
 
 @Component({
   selector: 'app-receipt',
@@ -13,6 +15,9 @@ import { Credit } from '../../models/credit';
 export class ReceiptComponent {
   cartService = inject(CartService);
   dashService = inject(DashboardService);
+  creditService = inject(CreditService);
+
+  $name!: Observable<Array<any>>;
 
   @ViewChild('payment') payment: ElementRef | undefined;
   receiptNo: number = Date.now();
@@ -24,6 +29,10 @@ export class ReceiptComponent {
 
   errorPayment: boolean = false;
   isCredit: boolean = false;
+
+  loadNames() {
+    this.$name = this.creditService.loadCredit();
+  }
 
   paymentVal(value: any) {
     //  const paymentInput = this.payment?.nativeElement as HTMLInputElement;
@@ -58,15 +67,18 @@ export class ReceiptComponent {
   }
 
   credit(val: any) {
-    let credit: Credit = {
+    let name: CreditName = {
       creditName: val.name,
+    };
+
+    let credit: Credit = {
       creditDate: this.date,
       creditTime: this.time,
       creditItems: this.cartService.cartData,
       creditTotal: this.cartService.getTotal(),
     };
 
-    this.dashService.saveCredit(val.name, credit);
+    this.isCredit = false;
   }
 
   creditTab() {

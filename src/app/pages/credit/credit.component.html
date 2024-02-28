@@ -15,7 +15,12 @@
   <section class="credit__info">
     <input type="text" placeholder="Search Name Here..." />
 
-    <div class="info-container">
+    <div class="info-header">
+      <h3>Names</h3>
+      <button type="button" (click)="addNew()">Add New Tab</button>
+    </div>
+
+    <div class="info-container" *ngFor="let data of $data | async">
       <i>
         <svg
           style="enable-background: new 0 0 24 24"
@@ -37,7 +42,7 @@
         </svg>
       </i>
 
-      <p>Sample Name</p>
+      <p>{{ data.creditName }}</p>
 
       <p>{{ 12323 | currency : "PHP" }}</p>
     </div>
@@ -69,4 +74,33 @@
       <p>{{ 12323 | currency : "PHP" }}</p>
     </div>
   </section>
+
+  <div class="credit-wrapper glass-background" *ngIf="isAdd">
+    <section class="credit-container">
+      <h3>Add New Tab</h3>
+      <form #f="ngForm" action="" (submit)="add(f.value)">
+        <input
+          ngModel
+          name="name"
+          #Name="ngModel"
+          type="text"
+          placeholder="Enter Name Here..."
+          required
+        />
+
+        <div class="error-container" *ngIf="Name.touched && Name.invalid">
+          <p *ngIf="Name.errors?.['required']">Name Cannot Be Empty</p>
+        </div>
+
+        <div class="name-container">
+          <div class="name"></div>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" (click)="addClose()">Close</button>
+          <button type="submit" [disabled]="f.invalid">Add Name</button>
+        </div>
+      </form>
+    </section>
+  </div>
 </section>

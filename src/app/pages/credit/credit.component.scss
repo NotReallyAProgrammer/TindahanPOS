@@ -2,6 +2,7 @@
 
 .credit {
   min-height: 100svh;
+  position: relative;
 
   &__compute {
     height: u.rem(250);
@@ -46,6 +47,25 @@
       margin-bottom: u.rem(30);
     }
 
+    .info-header {
+      margin-bottom: u.rem(10);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        background-color: var(--MAIN-COLOR);
+        padding: u.rem(10);
+        border-radius: u.rem(20);
+        box-shadow: var(--BOX-SHADOW);
+        border: none;
+
+        font-size: u.rem(12);
+        font-weight: 700;
+        color: white;
+      }
+    }
+
     .info-container {
       display: flex;
       align-items: center;
@@ -86,6 +106,64 @@
 
         p:nth-child(2) {
           color: white;
+        }
+      }
+    }
+  }
+
+  .credit-wrapper {
+    position: absolute;
+    top: u.rem(-50);
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: end;
+    padding-inline: var(--PADDING-INLINE-SM);
+    .credit-container {
+      padding: var(--PADDING-INLINE-SM);
+      width: 100%;
+      border-radius: u.rem(10);
+      min-height: max-content;
+      background-color: white;
+      h3 {
+        margin-bottom: u.rem(20);
+      }
+
+      form {
+        input {
+          padding: u.rem(10);
+          border-radius: u.rem(10);
+          box-shadow: var(--BOX-SHADOW);
+          width: 100%;
+          border: 1px solid var(--SUB-COLOR);
+        }
+
+        .button-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--SM-GAP);
+
+          margin-top: u.rem(20);
+
+          button {
+            padding: u.rem(10);
+            font-weight: 700;
+            color: white;
+            font-size: u.rem(18);
+            border: none;
+            border-radius: u.rem(10);
+            box-shadow: var(--BOX-SHADOW);
+
+            &:first-child {
+              background-color: var(--SUB-COLOR);
+            }
+
+            &:last-child {
+              background-color: var(--MAIN-COLOR);
+            }
+          }
         }
       }
     }

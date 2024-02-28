@@ -146,13 +146,14 @@ export class DashboardService {
     });
   }
 
-  saveCredit(creditName: string, data: object) {
-    const dbInstance = collection(
-      this.firestore,
-      `${this.email}/credits/${creditName}`
-    );
-    return addDoc(dbInstance, data).then(() => {
-      console.log('Credit Save');
-    });
-  }
+  //Saving Collection in Name
+  // saveCredit(creditName: string, data: object) {
+  //   const dbInstance = collection(
+  //     this.firestore,
+  //     `${this.email}/credits/${creditName}`
+  //   );
+  //   return addDoc(dbInstance, data).then(() => {
+  //     console.log('Credit Save');
+  //   });
+  // }
 }

@@ -4,6 +4,10 @@ export interface CreditName {
   creditName: string;
 }
 
+export interface CreditTotal {
+  subTotal: number;
+}
+
 export interface Credit {
   creditDate: string;
   creditTime: string;

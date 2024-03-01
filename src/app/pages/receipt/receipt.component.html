@@ -66,13 +66,13 @@
   <div class="credit-wrapper glass-background" *ngIf="isCredit">
     <section class="credit-container">
       <h3>Credit Tab</h3>
-      <form #f="ngForm" action="" (submit)="credit(f.value)">
+      <section class="credit">
         <input
           ngModel
           name="name"
           #Name="ngModel"
           type="text"
-          placeholder="Enter Name Here..."
+          placeholder="Search Name Here..."
           required
         />
 
@@ -81,14 +81,22 @@
         </div>
 
         <div class="name-container">
-          <div class="name"></div>
+          <button
+            type="button"
+            class="name"
+            *ngFor="let name of $name | async"
+            (click)="saveId(name.id)"
+          >
+            <p>{{ name.creditName }}</p>
+            <p>{{ name.subTotal | currency : "PHP" }}</p>
+          </button>
         </div>
 
         <div class="button-container">
           <button type="submit" (click)="closeCredit()">Close</button>
-          <button type="submit" [disabled]="f.invalid">Proceed</button>
+          <button type="submit" (click)="credit()">Proceed</button>
         </div>
-      </form>
+      </section>
     </section>
   </div>
 </section>

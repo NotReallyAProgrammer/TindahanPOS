@@ -3,7 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { Receipt } from '../../models/receipt';
 import { DatePipe, formatDate } from '@angular/common';
 import { DashboardService } from '../../services/dashboard.service';
-import { Credit, CreditName } from '../../models/credit';
+import { Credit, CreditName, CreditTotal } from '../../models/credit';
 import { Observable } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
 
@@ -18,6 +18,8 @@ export class ReceiptComponent {
   creditService = inject(CreditService);
 
   $name!: Observable<Array<any>>;
+  $subTotal!: Observable<Array<any>>;
+  idHolder!: string;
 
   @ViewChild('payment') payment: ElementRef | undefined;
   receiptNo: number = Date.now();
@@ -29,6 +31,10 @@ export class ReceiptComponent {
 
   errorPayment: boolean = false;
   isCredit: boolean = false;
+
+  ngOnInit() {
+    this.loadNames();
+  }
 
   loadNames() {
     this.$name = this.creditService.loadCredit();
@@ -46,6 +52,11 @@ export class ReceiptComponent {
       this.change = value - this.cartService.getTotal();
       this.errorPayment = !this.errorPayment;
     }
+  }
+
+  saveId(id: string) {
+    this.idHolder = id;
+    console.log(this.idHolder);
   }
 
   paid() {
@@ -66,17 +77,19 @@ export class ReceiptComponent {
     }
   }
 
-  credit(val: any) {
-    let name: CreditName = {
-      creditName: val.name,
-    };
-
+  credit() {
     let credit: Credit = {
       creditDate: this.date,
       creditTime: this.time,
       creditItems: this.cartService.cartData,
       creditTotal: this.cartService.getTotal(),
     };
+
+    let total: CreditTotal = {
+      subTotal: this.cartService.getTotal(),
+    };
+
+    this.creditService.addTotal(this.idHolder, total, credit);
 
     this.isCredit = false;
   }

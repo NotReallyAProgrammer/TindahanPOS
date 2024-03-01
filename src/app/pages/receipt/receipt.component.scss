@@ -134,17 +134,44 @@
       border-radius: u.rem(10);
       min-height: max-content;
       background-color: white;
+      box-shadow: var(--BOX-SHADOW);
       h3 {
         margin-bottom: u.rem(20);
       }
 
-      form {
+      .credit {
         input {
           padding: u.rem(10);
           border-radius: u.rem(10);
           box-shadow: var(--BOX-SHADOW);
           width: 100%;
           border: 1px solid var(--SUB-COLOR);
+        }
+        .name-container {
+          padding: u.rem(10);
+          max-height: 400;
+          overflow: scroll;
+
+          .name {
+            display: flex;
+            justify-content: space-between;
+            gap: u.rem(5);
+            padding: u.rem(10);
+            background: none;
+            width: 100%;
+            border: none;
+
+            p {
+              font-size: u.rem(14);
+              font-weight: 700;
+            }
+
+            &:hover {
+              background-color: var(--MAIN-COLOR);
+              color: white;
+              border-radius: u.rem(5);
+            }
+          }
         }
       }
     }

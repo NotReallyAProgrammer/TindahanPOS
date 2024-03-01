@@ -10,6 +10,7 @@ import { CreditComponent } from './pages/credit/credit.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { authGuard } from './guards/auth.guard';
+import { SuccessComponent } from './layout/success/success.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,12 @@ const routes: Routes = [
   {
     path: 'credit',
     component: CreditComponent,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'success',
+    component: SuccessComponent,
     canActivate: [authGuard],
   },
 ];

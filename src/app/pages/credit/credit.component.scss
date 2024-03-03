@@ -84,6 +84,7 @@
           border-radius: u.rem(20);
           margin-left: auto;
           box-shadow: var(--BOX-SHADOW);
+          min-width: u.rem(100);
         }
       }
       i {

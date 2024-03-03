@@ -147,6 +147,28 @@
           width: 100%;
           border: 1px solid var(--SUB-COLOR);
         }
+
+        .selected-container {
+          width: 100%;
+          margin-block: u.rem(10);
+          border: 1px solid var(--SUB-COLOR);
+          border-radius: u.rem(10);
+          padding: u.rem(10);
+
+          p {
+            font-size: u.rem(14);
+            font-weight: 700;
+            margin-bottom: u.rem(10);
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+          span {
+            margin-left: u.rem(5);
+            color: var(--SUB-COLOR-DARK);
+          }
+        }
         .name-container {
           padding: u.rem(10);
           max-height: 400;

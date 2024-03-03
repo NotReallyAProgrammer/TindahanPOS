@@ -28,7 +28,12 @@ export class ReceiptComponent {
 
   change: number = 0;
   paymentInp: number = 0;
+  nameSelected!: string;
+  totalCredit!: number;
+  newTotal!: number;
+  backButton: string = 'Close';
 
+  showSelected: boolean = false;
   errorPayment: boolean = false;
   isCredit: boolean = false;
 
@@ -54,9 +59,13 @@ export class ReceiptComponent {
     }
   }
 
-  saveId(id: string) {
-    this.idHolder = id;
-    console.log(this.idHolder);
+  saveId(data: any) {
+    this.backButton = 'Back';
+    this.showSelected = !this.showSelected;
+    this.idHolder = data.id;
+    this.nameSelected = data.creditName;
+    this.totalCredit = data.subTotal;
+    this.newTotal = data.subTotal + this.cartService.getTotal();
   }
 
   paid() {
@@ -98,7 +107,12 @@ export class ReceiptComponent {
     this.isCredit = !this.isCredit;
   }
 
-  closeCredit() {
-    this.isCredit = false;
+  close() {
+    if (this.backButton == 'Close') {
+      this.isCredit = false;
+    } else if (this.backButton == 'Back') {
+      this.showSelected = false;
+      this.backButton = 'Close';
+    }
   }
 }

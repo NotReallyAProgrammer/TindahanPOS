@@ -80,12 +80,27 @@
           <p *ngIf="Name.errors?.['required']">Name Cannot Be Empty</p>
         </div>
 
-        <div class="name-container">
+        <div class="selected-container" *ngIf="showSelected">
+          <p>
+            Name Selected: <span>{{ nameSelected }}</span>
+          </p>
+          <p>
+            Total Credit: <span>{{ totalCredit | currency : "PHP" }}</span>
+          </p>
+          <p>
+            Item Total:
+            <span>{{ cartService.getTotal() | currency : "PHP" }}</span>
+          </p>
+          <p>
+            New Total Credit: <span>{{ newTotal | currency : "PHP" }}</span>
+          </p>
+        </div>
+        <div class="name-container" *ngIf="!showSelected">
           <button
             type="button"
             class="name"
             *ngFor="let name of $name | async"
-            (click)="saveId(name.id)"
+            (click)="saveId(name)"
           >
             <p>{{ name.creditName }}</p>
             <p>{{ name.subTotal | currency : "PHP" }}</p>
@@ -93,8 +108,10 @@
         </div>
 
         <div class="button-container">
-          <button type="submit" (click)="closeCredit()">Close</button>
-          <button type="submit" (click)="credit()">Proceed</button>
+          <button type="submit" (click)="close()">{{ backButton }}</button>
+          <button *ngIf="showSelected" type="submit" (click)="credit()">
+            Proceed
+          </button>
         </div>
       </section>
     </section>

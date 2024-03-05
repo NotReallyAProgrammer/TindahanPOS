@@ -12,9 +12,11 @@ export class CreditComponent {
   creditService = inject(CreditService);
 
   $data!: Observable<Array<any>>;
+  $creditData!: Observable<Array<any>>;
 
   isAdd: boolean = false;
-
+  isMore: boolean = false;
+  nameHolder!: string;
   ngOnInit() {
     this.loadData();
   }
@@ -26,8 +28,12 @@ export class CreditComponent {
   addNew() {
     this.isAdd = !this.isAdd;
   }
-  addClose() {
-    this.isAdd = false;
+  addClose(where: string) {
+    if (where == 'Add') {
+      this.isAdd = false;
+    } else if (where == 'View') {
+      this.isMore = false;
+    }
   }
 
   add(val: any) {
@@ -37,5 +43,13 @@ export class CreditComponent {
 
     this.creditService.saveName(name);
     this.isAdd = false;
+  }
+
+  viewMore(data: any) {
+    this.isMore = !this.isMore;
+    this.nameHolder = data.creditName;
+    console.log(data);
+
+    this.$creditData = this.creditService.loadCreditInfo(data.id);
   }
 }

@@ -20,7 +20,11 @@
       <button type="button" (click)="addNew()">Add New Tab</button>
     </div>
 
-    <div class="info-container" *ngFor="let data of $data | async">
+    <div
+      class="info-container"
+      *ngFor="let data of $data | async"
+      (click)="viewMore(data)"
+    >
       <i>
         <svg
           style="enable-background: new 0 0 24 24"
@@ -71,12 +75,74 @@
         </div>
 
         <div class="button-container">
-          <button type="submit" (click)="addClose()">Close</button>
+          <button type="submit" (click)="addClose('Add')">Close</button>
           <button type="submit" [disabled]="f.invalid">Add Name</button>
         </div>
       </form>
     </section>
   </div>
 
-  <div class="info-container"></div>
+  <section class="more-container glass-background" *ngIf="isMore">
+    <div class="more-wrapper">
+      <div class="more-header">
+        <h2>{{ nameHolder }}</h2>
+        <i (click)="addClose('View')">
+          <svg
+            style="enable-background: new 0 0 24 24"
+            version="1.1"
+            viewBox="0 0 24 24"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <style type="text/css">
+              .st0 {
+                opacity: 0.2;
+                fill: none;
+                stroke: #000000;
+                stroke-width: 5e-2;
+                stroke-miterlimit: 10;
+              }
+            </style>
+            <g id="grid_system" />
+            <g id="_icons">
+              <path
+                d="M5.3,18.7C5.5,18.9,5.7,19,6,19s0.5-0.1,0.7-0.3l5.3-5.3l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3   c0.4-0.4,0.4-1,0-1.4L13.4,12l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L12,10.6L6.7,5.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4   l5.3,5.3l-5.3,5.3C4.9,17.7,4.9,18.3,5.3,18.7z"
+              />
+            </g>
+          </svg>
+        </i>
+      </div>
+
+      <div class="date-container" *ngFor="let data of $creditData | async">
+        <p>{{ data.creditDate }}</p>
+        <i>
+          <svg
+            enable-background="new 0 0 48 48"
+            height="48px"
+            id="Layer_1"
+            version="1.1"
+            viewBox="0 0 48 48"
+            width="48px"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g id="Layer_4">
+              <polygon
+                fill="#241F20"
+                points="47.993,14.121 45.872,12 45.863,12.009 43.752,9.896 24.008,29.641 4.248,9.881 0.007,14.125    0.013,14.13 0.009,14.134 21.679,35.803 21.664,35.816 23.967,38.119 23.98,38.105 23.994,38.119 25.021,37.093 25.029,37.104    47.993,14.141 47.982,14.131  "
+              />
+            </g>
+          </svg>
+        </i>
+
+        <div *ngFor="let item of data.creditItems">
+          <p>{{ item.itemName }}</p>
+
+          <p>{{ item.itemPrice }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>

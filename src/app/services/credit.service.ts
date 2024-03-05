@@ -33,6 +33,15 @@ export class CreditService {
     return collectionData(dbInstance, { idField: 'id' });
   }
 
+  loadCreditInfo(id: string) {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/credits/${this.uid}/${id}/credit-info`
+    );
+
+    return collectionData(dbInstance, { idField: 'id' });
+  }
+
   saveName(name: object) {
     const dbInstance = collection(
       this.firestore,
@@ -76,7 +85,9 @@ export class CreditService {
       next: (value) => {
         let subtotal = value.find((i) => i.id === nameId);
 
-        total.subTotal = total.subTotal + subtotal.subTotal;
+        if (subtotal.length > 0) {
+          total.subTotal = total.subTotal + subtotal.subTotal;
+        }
 
         return updateDoc(docInstance, total).then(() => {
           this.addCreditInfo(nameId, data);

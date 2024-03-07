@@ -84,8 +84,9 @@ export class CreditService {
     this.$subTotal.pipe(take(1)).subscribe({
       next: (value) => {
         let subtotal = value.find((i) => i.id === nameId);
+        console.log(subtotal);
 
-        if (subtotal.length > 0) {
+        if (subtotal.subTotal > 0) {
           total.subTotal = total.subTotal + subtotal.subTotal;
         }
 

@@ -24,6 +24,7 @@ export class ReceiptComponent {
   @ViewChild('payment') payment: ElementRef | undefined;
   receiptNo: number = Date.now();
   date: string = formatDate(new Date(), 'MM/dd/yyyy ', 'en-US');
+  dateName: string = formatDate(new Date(), 'MM-dd-yyyy ', 'en-US');
   time: string = formatDate(new Date(), 'hh:mm a', 'en-US');
 
   change: number = 0;
@@ -92,6 +93,7 @@ export class ReceiptComponent {
       creditTime: this.time,
       creditItems: this.cartService.cartData,
       creditTotal: this.cartService.getTotal(),
+      open: false,
     };
 
     let total: CreditTotal = {

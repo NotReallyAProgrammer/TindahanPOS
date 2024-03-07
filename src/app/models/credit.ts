@@ -13,4 +13,5 @@ export interface Credit {
   creditTime: string;
   creditItems: Cart[];
   creditTotal: number;
+  open: boolean;
 }

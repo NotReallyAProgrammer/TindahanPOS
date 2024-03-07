@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
 import { CreditName } from '../../models/credit';
 
@@ -16,7 +16,10 @@ export class CreditComponent {
 
   isAdd: boolean = false;
   isMore: boolean = false;
+  isItem: boolean = false;
   nameHolder!: string;
+
+  showItem!: Array<any>;
   ngOnInit() {
     this.loadData();
   }
@@ -48,8 +51,12 @@ export class CreditComponent {
   viewMore(data: any) {
     this.isMore = !this.isMore;
     this.nameHolder = data.creditName;
-    console.log(data);
 
     this.$creditData = this.creditService.loadCreditInfo(data.id);
+  }
+
+  viewItems(data: any) {
+    data.open = !data.open;
+    this.isItem = !this.isItem;
   }
 }

@@ -18,6 +18,7 @@ export class CreditComponent {
   isMore: boolean = false;
   isItem: boolean = false;
   nameHolder!: string;
+  subTotal!: number;
 
   showItem!: Array<any>;
   ngOnInit() {
@@ -51,6 +52,7 @@ export class CreditComponent {
   viewMore(data: any) {
     this.isMore = !this.isMore;
     this.nameHolder = data.creditName;
+    this.subTotal = data.subTotal;
 
     this.$creditData = this.creditService.loadCreditInfo(data.id);
   }

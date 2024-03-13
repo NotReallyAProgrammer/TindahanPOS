@@ -209,10 +209,32 @@
         border: 2px solid var(--MAIN-COLOR);
         padding: u.rem(20);
         border-radius: u.rem(10);
+        position: relative;
+      }
+
+      .nav-container {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px solid var(--SUB-COLOR-DARK);
+
+        button {
+          background: transparent;
+          border: none;
+          color: var(--SUB-COLOR);
+          width: 100%;
+          font-weight: 700;
+          font-size: u.rem(12);
+          padding: u.rem(10);
+
+          &:hover {
+            background-color: var(--MAIN-COLOR);
+            color: white;
+          }
+        }
       }
 
       .date-wrapper {
-        height: 70%;
+        height: 60%;
         margin-top: u.rem(30);
         overflow: scroll;
         border: 2px solid black;
@@ -268,10 +290,10 @@
         }
       }
 
-      button {
+      .credit-button {
         padding: u.rem(10);
         width: 100%;
-        margin-top: 10%;
+        margin-top: 20%;
         border: none;
         border-radius: u.rem(50);
         background-color: var(--MAIN-COLOR);

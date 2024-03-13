@@ -114,13 +114,14 @@
         </i>
       </div>
 
-      <div class="nav-container"></div>
-
       <div class="total-container">
         <p>Total Credit</p>
         <h2>{{ subTotal | currency : "PHP" }}</h2>
       </div>
-
+      <div class="nav-container">
+        <button>Credit Info</button>
+        <button>Payment History</button>
+      </div>
       <div class="date-wrapper">
         <section
           class="date-container"
@@ -163,7 +164,7 @@
         </section>
       </div>
 
-      <button>Credit Payment</button>
+      <button class="credit-button">Credit Payment</button>
     </div>
   </section>
 </section>

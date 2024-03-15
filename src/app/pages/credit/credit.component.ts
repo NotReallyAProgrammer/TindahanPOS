@@ -17,6 +17,7 @@ export class CreditComponent {
   isAdd: boolean = false;
   isMore: boolean = false;
   isItem: boolean = false;
+  navSelect: boolean = false;
   nameHolder!: string;
   subTotal!: number;
 
@@ -59,6 +60,14 @@ export class CreditComponent {
 
   viewItems(data: any) {
     data.open = !data.open;
+
+    setTimeout(() => {
+      data.open = false;
+    }, 5000);
     this.isItem = !this.isItem;
+  }
+
+  selectTab(): void {
+    this.navSelect = !this.navSelect;
   }
 }

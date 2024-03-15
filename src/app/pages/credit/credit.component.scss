@@ -290,6 +290,18 @@
         }
       }
 
+      .history-wrapper {
+        height: 60%;
+        margin-top: u.rem(30);
+        overflow: scroll;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: var(--M-GAP);
+        padding: u.rem(20);
+        border-radius: u.rem(10);
+      }
+
       .credit-button {
         padding: u.rem(10);
         width: 100%;

@@ -114,15 +114,15 @@
         </i>
       </div>
 
-      <div class="total-container">
+      <section class="total-container">
         <p>Total Credit</p>
         <h2>{{ subTotal | currency : "PHP" }}</h2>
-      </div>
+      </section>
       <div class="nav-container">
-        <button>Credit Info</button>
-        <button>Payment History</button>
+        <button (click)="selectTab()">Credit Info</button>
+        <button (click)="selectTab()">Payment History</button>
       </div>
-      <div class="date-wrapper">
+      <section class="date-wrapper" *ngIf="!navSelect">
         <section
           class="date-container"
           *ngFor="let data of $creditData | async"
@@ -162,8 +162,9 @@
             </div>
           </div>
         </section>
-      </div>
+      </section>
 
+      <section class="history-wrapper" *ngIf="navSelect"></section>
       <button class="credit-button">Credit Payment</button>
     </div>
   </section>

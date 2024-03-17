@@ -302,16 +302,41 @@
         border-radius: u.rem(10);
       }
 
-      .credit-button {
-        padding: u.rem(10);
-        width: 100%;
-        margin-top: 20%;
-        border: none;
-        border-radius: u.rem(50);
-        background-color: var(--MAIN-COLOR);
-        font-weight: 700;
-        color: white;
-        font-size: u.rem(14);
+      .payment-form {
+        position: absolute;
+        bottom: 4%;
+        left: 10%;
+        right: 10%;
+
+        .input-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: u.rem(5);
+
+          label {
+            font-size: u.rem(14);
+            font-weight: 700;
+          }
+
+          input {
+            padding: u.rem(10);
+            border-radius: u.rem(10);
+            width: 100%;
+            border: 1px solid var(--SUB-COLOR);
+          }
+        }
+
+        .credit-button {
+          padding: u.rem(10);
+          width: 100%;
+          margin-top: u.rem(10);
+          border: none;
+          border-radius: u.rem(50);
+          background-color: var(--MAIN-COLOR);
+          font-weight: 700;
+          color: white;
+          font-size: u.rem(14);
+        }
       }
     }
   }

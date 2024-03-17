@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
 import { CreditName } from '../../models/credit';
 
@@ -69,5 +69,9 @@ export class CreditComponent {
 
   selectTab(): void {
     this.navSelect = !this.navSelect;
+  }
+
+  payment(f: any) {
+    console.log(f.value);
   }
 }

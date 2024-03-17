@@ -165,7 +165,21 @@
       </section>
 
       <section class="history-wrapper" *ngIf="navSelect"></section>
-      <button class="credit-button">Credit Payment</button>
+
+      <form #f="ngForm" action="" class="payment-form" (submit)="payment(f)">
+        <div class="input-wrapper">
+          <label for=""> Payment Here </label>
+          <input
+            type="number"
+            placeholder="Put Payment Here"
+            min="0"
+            ngModel
+            name="Payment"
+            #Payment="ngModel"
+          />
+        </div>
+        <button class="credit-button">Credit Payment</button>
+      </form>
     </div>
   </section>
 </section>

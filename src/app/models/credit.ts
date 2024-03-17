@@ -15,3 +15,5 @@ export interface Credit {
   creditTotal: number;
   open: boolean;
 }
+
+export interface CreditPayment {}

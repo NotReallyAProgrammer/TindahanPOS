@@ -71,7 +71,5 @@ export class CreditComponent {
     this.navSelect = !this.navSelect;
   }
 
-  payment(f: any) {
-    console.log(f.value);
-  }
+  payment(f: any) {}
 }

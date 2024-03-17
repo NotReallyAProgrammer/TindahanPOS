@@ -176,9 +176,19 @@
             ngModel
             name="Payment"
             #Payment="ngModel"
+            required
           />
+
+          <div
+            class="error-container"
+            *ngIf="Payment.touched && Payment.invalid"
+          >
+            <p *ngIf="Payment.errors?.['required']">Payment Cannot Be Empty</p>
+          </div>
         </div>
-        <button class="credit-button">Credit Payment</button>
+        <button class="credit-button" [disabled]="f.invalid">
+          Credit Payment
+        </button>
       </form>
     </div>
   </section>

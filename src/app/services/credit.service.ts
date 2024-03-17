@@ -96,4 +96,25 @@ export class CreditService {
       },
     });
   }
+
+  paymentTotal(nameId: any, total: any) {
+    const docInstance = doc(
+      this.firestore,
+      `${this.email}/credits/${this.uid}`,
+      nameId
+    );
+
+    return updateDoc(docInstance, total);
+  }
+
+  creditPayment(data: any, nameId: string, total: any) {
+    const docInstance = collection(
+      this.firestore,
+      `${this.email}/credits/${this.uid}/${nameId}/payments`
+    );
+
+    return addDoc(docInstance, data).then(() => {
+      this.paymentTotal(nameId, total);
+    });
+  }
 }

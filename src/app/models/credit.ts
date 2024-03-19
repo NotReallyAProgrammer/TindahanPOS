@@ -16,4 +16,10 @@ export interface Credit {
   open: boolean;
 }
 
-export interface CreditPayment {}
+export interface CreditPayment {
+  paymentDate: string;
+  paymentTime: string;
+  paymentPaid: number;
+  paymentTotal: number;
+  paymentNewTotal: number;
+}

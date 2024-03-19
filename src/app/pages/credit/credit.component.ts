@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
-import { CreditName } from '../../models/credit';
+import { CreditName, CreditPayment, CreditTotal } from '../../models/credit';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-credit',
@@ -13,6 +14,7 @@ export class CreditComponent {
 
   $data!: Observable<Array<any>>;
   $creditData!: Observable<Array<any>>;
+  $paymentData!: Observable<Array<any>>;
 
   isAdd: boolean = false;
   isMore: boolean = false;
@@ -20,8 +22,15 @@ export class CreditComponent {
   navSelect: boolean = false;
   nameHolder!: string;
   subTotal!: number;
+  newTotal!: number;
+
+  creditId!: string;
 
   showItem!: Array<any>;
+
+  date: string = formatDate(new Date(), 'MM/dd/yyyy ', 'en-US');
+
+  time: string = formatDate(new Date(), 'hh:mm a', 'en-US');
   ngOnInit() {
     this.loadData();
   }
@@ -54,7 +63,7 @@ export class CreditComponent {
     this.isMore = !this.isMore;
     this.nameHolder = data.creditName;
     this.subTotal = data.subTotal;
-
+    this.creditId = data.id;
     this.$creditData = this.creditService.loadCreditInfo(data.id);
   }
 
@@ -69,7 +78,28 @@ export class CreditComponent {
 
   selectTab(): void {
     this.navSelect = !this.navSelect;
+
+    if (this.navSelect == false) {
+      this.$paymentData = this.creditService.loadPayments(this.creditId);
+    }
   }
 
-  payment(f: any) {}
+  payment(f: any) {
+    this.newTotal = this.subTotal - f.Payment;
+    let paymentInfo: CreditPayment = {
+      paymentDate: this.date,
+      paymentTime: this.time,
+      paymentPaid: f.Payment,
+      paymentTotal: this.subTotal,
+      paymentNewTotal: this.newTotal,
+    };
+
+    let total: CreditTotal = {
+      subTotal: this.newTotal,
+    };
+
+    this.creditService.creditPayment(paymentInfo, this.creditId, total);
+
+    this.isMore = false;
+  }
 }

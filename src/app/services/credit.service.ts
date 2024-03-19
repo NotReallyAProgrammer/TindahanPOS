@@ -42,6 +42,24 @@ export class CreditService {
     return collectionData(dbInstance, { idField: 'id' });
   }
 
+  loadSubtotal() {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/credits/${this.uid}`
+    );
+
+    return collectionData(dbInstance, { idField: 'id' });
+  }
+
+  loadPayments(nameId: string) {
+    const dbInstance = collection(
+      this.firestore,
+      `${this.email}/credits/${this.uid}/${nameId}/payments`
+    );
+
+    return collectionData(dbInstance, { idField: 'id' });
+  }
+
   saveName(name: object) {
     const dbInstance = collection(
       this.firestore,
@@ -50,15 +68,6 @@ export class CreditService {
     return addDoc(dbInstance, name).then(() => {
       console.log('Name Save');
     });
-  }
-
-  loadSubtotal() {
-    const dbInstance = collection(
-      this.firestore,
-      `${this.email}/credits/${this.uid}`
-    );
-
-    return collectionData(dbInstance, { idField: 'id' });
   }
 
   addCreditInfo(nameId: string, data: any) {
@@ -104,7 +113,9 @@ export class CreditService {
       nameId
     );
 
-    return updateDoc(docInstance, total);
+    return updateDoc(docInstance, total).then(() => {
+      console.log('Payment Success');
+    });
   }
 
   creditPayment(data: any, nameId: string, total: any) {

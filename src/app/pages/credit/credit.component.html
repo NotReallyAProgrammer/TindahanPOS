@@ -164,14 +164,46 @@
         </section>
       </section>
 
-      <section class="history-wrapper" *ngIf="navSelect"></section>
+      <section class="history-wrapper" *ngIf="navSelect">
+        <div
+          class="history-container"
+          *ngFor="let payment of $paymentData | async"
+        >
+          <p>
+            Payment Date: <span>{{ payment.paymentDate }}</span>
+          </p>
 
-      <form #f="ngForm" action="" class="payment-form" (submit)="payment(f)">
+          <p>
+            Payment Time: <span>{{ payment.paymentTime }}</span>
+          </p>
+
+          <p>
+            Payment Paid: <span>{{ payment.paymentPaid }}</span>
+          </p>
+
+          <p>
+            Payment Balance: <span>{{ payment.paymentTotal }}</span>
+          </p>
+
+          <p>
+            Payment New Balance: <span>{{ payment.paymentNewTotal }}</span>
+          </p>
+        </div>
+      </section>
+
+      <form
+        #f="ngForm"
+        action=""
+        class="payment-form"
+        (submit)="payment(f.value)"
+      >
         <div class="input-wrapper">
-          <label for=""> Payment Here </label>
+          <label for="payment"> Payment Here </label>
           <input
             type="number"
             placeholder="Put Payment Here"
+            value=""
+            id="payment"
             min="0"
             ngModel
             name="Payment"

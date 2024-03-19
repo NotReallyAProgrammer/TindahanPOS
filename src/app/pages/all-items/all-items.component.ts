@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Categories } from '../../models/categories';
 import { DashboardService } from '../../services/dashboard.service';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ImgtowebpService } from '../../services/imgtowebp.service';
 import { LoadingService } from '../../services/loading.service';
 import { HttpClient } from '@angular/common/http';

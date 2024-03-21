@@ -215,7 +215,7 @@
       .nav-container {
         display: flex;
         flex-direction: row;
-        border-bottom: 2px solid var(--SUB-COLOR-DARK);
+        border-bottom: 2px solid var(--MAIN-COLOR);
 
         button {
           background: transparent;
@@ -236,8 +236,8 @@
       .date-wrapper {
         height: 55%;
         margin-top: u.rem(30);
-        overflow: scroll;
-        border: 2px solid black;
+        overflow-y: scroll;
+        border: 2px solid var(--SUB-COLOR);
         display: flex;
         flex-direction: column;
         gap: var(--M-GAP);
@@ -291,15 +291,36 @@
       }
 
       .history-wrapper {
-        height: 60%;
+        height: 55%;
         margin-top: u.rem(30);
-        overflow: scroll;
-        border: 2px solid black;
+        overflow-y: scroll;
+        border: 2px solid var(--SUB-COLOR-DARK);
         display: flex;
         flex-direction: column;
         gap: var(--M-GAP);
         padding: u.rem(20);
         border-radius: u.rem(10);
+
+        .history-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          border: 2px solid var(--SUB-COLOR-DARK);
+          padding: u.rem(10);
+          border-radius: u.rem(10);
+
+          .payment-container {
+            display: flex;
+            flex-direction: column;
+            gap: u.rem(5);
+          }
+
+          p {
+            font-weight: 700;
+            color: var(--MAIN-COLOR);
+          }
+        }
       }
 
       .payment-form {

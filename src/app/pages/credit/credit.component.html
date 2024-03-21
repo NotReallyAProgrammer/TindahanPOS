@@ -169,25 +169,25 @@
           class="history-container"
           *ngFor="let payment of $paymentData | async"
         >
-          <p>
-            Payment Date: <span>{{ payment.paymentDate }}</span>
-          </p>
+          <div class="payment-date">
+            <h4>
+              Date: <span>{{ payment.paymentDate }}</span>
+            </h4>
 
-          <p>
-            Payment Time: <span>{{ payment.paymentTime }}</span>
-          </p>
+            <h5>
+              Time: <span>{{ payment.paymentTime }}</span>
+            </h5>
+          </div>
 
-          <p>
-            Payment Paid: <span>{{ payment.paymentPaid }}</span>
-          </p>
-
+          <p>-{{ payment.paymentPaid | currency : "PHP" }}</p>
+          <!--
           <p>
             Payment Balance: <span>{{ payment.paymentTotal }}</span>
           </p>
 
           <p>
             Payment New Balance: <span>{{ payment.paymentNewTotal }}</span>
-          </p>
+          </p> -->
         </div>
       </section>
 

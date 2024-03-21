@@ -77,11 +77,12 @@ export class CreditComponent {
   }
 
   selectTab(): void {
-    this.navSelect = !this.navSelect;
+    this.navSelect = false;
+  }
 
-    if (this.navSelect == false) {
-      this.$paymentData = this.creditService.loadPayments(this.creditId);
-    }
+  viewHistory(): void {
+    this.navSelect = true;
+    this.$paymentData = this.creditService.loadPayments(this.creditId);
   }
 
   payment(f: any) {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { Items } from '../../models/items';
@@ -16,11 +16,28 @@ export class AddItemComponent {
   selectedImg: string = '';
   itemBarcode: string = '';
 
+  qtyInput!: number;
+  totalPrice: number = 0;
+  totalProfit: number = 0;
+
   //
   $catData!: Observable<Array<any>>;
 
   ngOnInit() {
     this.loadItem();
+  }
+
+  getQuantity(inp: any): void {
+    this.qtyInput = Number(inp);
+  }
+
+  getPrice(inp: any): void {
+    this.totalPrice = Number(inp) * this.qtyInput;
+  }
+
+  getSelling(inp: any): void {
+    let total = Number(inp) * this.qtyInput;
+    this.totalProfit = total - this.totalPrice;
   }
 
   loadItem(): void {

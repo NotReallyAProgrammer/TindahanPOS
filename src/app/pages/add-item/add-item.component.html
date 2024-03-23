@@ -26,11 +26,11 @@
   <section class="add-item__form">
     <p *ngIf="itemBarcode != ''">Barcode No: <span>1312923299</span></p>
     <form #f="ngForm" action="" (submit)="onSubmit(f.value)">
-      <label for="">Item</label>
+      <label for="Name">Item</label>
       <input
         type="text"
         name="Item Name"
-        id=""
+        id="Name"
         title="Item Name"
         placeholder="Item Name Here"
         ngModel
@@ -42,17 +42,19 @@
         <p *ngIf="itemName.errors?.['required']">Name Cannot Be Empty</p>
       </div>
 
-      <label for="">Quantity</label>
+      <label for="Quantity">Quantity</label>
       <input
+        #qty
         type="number"
         name="Quantity"
-        id=""
+        id="Quantity"
         title="Item Name"
         min="0"
         placeholder="Quantity"
         ngModel
         name="itemQty"
         #itemQty="ngModel"
+        (change)="getQuantity(qty.value)"
         required
       />
 
@@ -64,28 +66,32 @@
         <label for="">Price(PHP)</label>
         <p class="price-text">Total</p>
         <input
+          #price
           type="number"
           title="Price"
           placeholder="Bought Price Here"
           ngModel
           name="itemPrc"
           #itemPrc="ngModel"
+          (change)="getPrice(price.value)"
           required
         />
-        <p class="total">121,121</p>
+        <p class="total">{{ totalPrice | currency : "PHP" }}</p>
 
         <label for="">Selling Price(PHP)</label>
         <p class="price-text">Profit</p>
         <input
+          #selling
           type="number"
           title="Price"
           placeholder="Selling Price Here"
           ngModel
           name="itemSel"
           #itemSel="ngModel"
+          (change)="getSelling(selling.value)"
           required
         />
-        <p class="total">121,121</p>
+        <p class="total">{{ totalProfit | currency : "PHP" }}</p>
       </div>
 
       <div class="error-container" *ngIf="itemPrc.touched && itemPrc.invalid">

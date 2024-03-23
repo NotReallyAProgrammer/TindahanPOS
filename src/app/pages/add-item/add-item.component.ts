@@ -39,7 +39,7 @@ export class AddItemComponent {
 
   onSubmit(val: any) {
     console.log(val);
-
+    let where = 'Items';
     let itemData: Items = {
       itemImg: this.selectedImg,
       itemName: val.itemName,
@@ -49,6 +49,6 @@ export class AddItemComponent {
       itemCategory: val.itemCat,
     };
 
-    this.dashService.uploadImage(this.selectedImg, itemData);
+    this.dashService.uploadImage(this.selectedImg, itemData, where);
   }
 }

@@ -88,6 +88,8 @@ export class AllItemsComponent {
   }
 
   onSubmit(val: any) {
+    let where = 'Category';
+
     this.isCategory = !this.isCategory;
 
     let categoryData: Categories = {
@@ -95,7 +97,9 @@ export class AllItemsComponent {
       categoryImg: this.imgSrc,
     };
 
-    this.dashService.uploadImage(this.selectedImg, categoryData).then(() => {});
+    this.dashService
+      .uploadImage(this.selectedImg, categoryData, where)
+      .then(() => {});
   }
 
   //Delete Category

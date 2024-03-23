@@ -4,7 +4,8 @@
   padding-block: u.rem(50);
   padding-inline: var(--PADDING-INLINE-SM);
   position: relative;
-  min-height: 100svh;
+  height: 100svh;
+  overflow-y: scroll;
 
   h2 {
     font-size: u.rem(40);
@@ -255,7 +256,7 @@
     right: 0;
     left: 0;
 
-    bottom: u.rem(10);
+    bottom: 1svh;
     min-height: u.rem(300);
 
     padding: u.rem(20);

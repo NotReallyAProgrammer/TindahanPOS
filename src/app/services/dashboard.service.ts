@@ -82,7 +82,7 @@ export class DashboardService {
   }
 
   //Upload Image
-  async uploadImage(imgUrl: any, data: any) {
+  async uploadImage(imgUrl: any, data: any, where: string) {
     let filePathName = '';
 
     if (data.itemName !== '') {
@@ -95,10 +95,10 @@ export class DashboardService {
     const uploadTask = await uploadBytes(storageRef, imgUrl);
     const downloadUrl = await getDownloadURL(uploadTask.ref);
 
-    if (data.itemName !== '') {
+    if (where === 'Items') {
       data.itemImg = downloadUrl;
       this.saveItem(data);
-    } else if (data.catetegoryImg != '') {
+    } else if (where === 'Category') {
       data.categoryImg = downloadUrl;
       this.saveCategory(data);
     }

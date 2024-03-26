@@ -2,6 +2,7 @@ import { Cart } from './cart';
 
 export interface CreditName {
   creditName: string;
+  subTotal: number;
 }
 
 export interface CreditTotal {

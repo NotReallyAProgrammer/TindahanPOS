@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, toArray } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
 import { CreditName, CreditPayment, CreditTotal } from '../../models/credit';
 import { formatDate } from '@angular/common';
@@ -23,6 +23,7 @@ export class CreditComponent {
   nameHolder!: string;
   subTotal!: number;
   newTotal!: number;
+  totalCredit!: any;
 
   creditId!: string;
 
@@ -37,6 +38,13 @@ export class CreditComponent {
 
   loadData() {
     this.$data = this.creditService.loadCredit();
+    this.$data.subscribe((data) => {
+      // console.log(data.reduce((sum, el) => (sum += el.subTotal), 0));
+
+      this.totalCredit = data
+        .flat()
+        .reduce((sum, el) => (sum += el.subTotal), 0);
+    });
   }
 
   addNew() {
@@ -53,6 +61,7 @@ export class CreditComponent {
   add(val: any) {
     let name: CreditName = {
       creditName: val.name,
+      subTotal: 0,
     };
 
     this.creditService.saveName(name);

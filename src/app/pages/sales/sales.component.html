@@ -96,28 +96,20 @@
   <section class="sales__item">
     <input type="text" title="Search Item" placeholder="Search..." />
 
-    <section class="item-container">
+    <section class="item-carousel">
       <h3>Categories</h3>
 
-      <section class="item-carousel">
+      <div class="button-wrapper">
         <button
           type="button"
-          class="Categories Carousel"
           *ngFor="let catData of $catData | async"
           (click)="filterCat(catData.category)"
         >
-          <figure>
-            <img
-              [src]="catData.categoryImg"
-              alt="Category Img"
-              title="Category Background"
-              loading="lazy"
-            />
-          </figure>
-          <p>{{ catData.category }}</p>
+          {{ catData.category }}
         </button>
-      </section>
-
+      </div>
+    </section>
+    <section class="item-container">
       <section class="item-all">
         <div class="header-container">
           <h3>{{ itemHeader }}</h3>

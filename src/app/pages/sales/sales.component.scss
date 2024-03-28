@@ -4,6 +4,9 @@
   padding-inline: var(--PADDING-INLINE-SM);
   padding-block: var(--PADDING-BLOCK-SM);
 
+  height: 100svh;
+  overflow-y: scroll;
+
   &__dash {
     padding-block: u.rem(15);
     background-color: white;
@@ -139,9 +142,47 @@
 
   &__item {
     margin-top: u.rem(20);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    height: max-content;
+
+    input {
+      padding: u.rem(10) u.rem(15);
+      width: 100%;
+      margin-inline: auto;
+      border: none;
+      border-radius: u.rem(10);
+      box-shadow: var(--BOX-SHADOW);
+
+      &:active {
+        border: 2px solid var(--MAIN-COLOR);
+      }
+    }
+
+    .item-carousel {
+      margin-top: u.rem(15);
+      .button-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--SM-GAP);
+        overflow-x: scroll;
+        margin-top: u.rem(10);
+        height: 100%;
+
+        button {
+          padding: u.rem(10);
+          box-shadow: var(--BOX-SHADOW);
+          border-radius: u.rem(10);
+          border: none;
+          place-items: center;
+          background-color: var(--SUB-COLOR);
+          overflow: hidden;
+          z-index: 1;
+          font-size: u.rem(14);
+          font-weight: 700;
+          color: white;
+        }
+      }
+    }
 
     .header-container {
       display: flex;
@@ -159,71 +200,8 @@
         border-radius: u.rem(10);
       }
     }
-
-    input {
-      padding: u.rem(10) u.rem(15);
-      width: 100%;
-      margin-inline: auto;
-      border: none;
-      border-radius: u.rem(10);
-      box-shadow: var(--BOX-SHADOW);
-
-      &:active {
-        border: 2px solid var(--MAIN-COLOR);
-      }
-    }
-
     .item-container {
       margin-top: u.rem(20);
-      align-self: flex-start;
-
-      .item-carousel {
-        margin-top: u.rem(15);
-        display: flex;
-        flex-direction: row;
-        gap: var(--SM-GAP);
-        overflow: scroll;
-        button {
-          height: 90px;
-          width: 120px;
-          background: white;
-          box-shadow: var(--BOX-SHADOW);
-          border-radius: u.rem(10);
-          border: none;
-          display: grid;
-          place-items: center;
-          position: relative;
-          overflow: hidden;
-          z-index: 1;
-          background: rgb(255, 255, 255);
-          background: var(--CAROUSEL-BG-GRADIENT);
-
-          figure {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            top: 0;
-            right: 0;
-            z-index: -1;
-
-            img {
-              width: 100%;
-              height: 100%;
-              opacity: 0.6;
-              object-fit: fill;
-            }
-          }
-
-          p {
-            font-size: u.rem(24);
-            font-weight: 700;
-            color: white;
-            background-color: var(--SUB-COLOR);
-            padding: u.rem(5);
-            border-radius: u.rem(10);
-          }
-        }
-      }
 
       .item-all {
         margin-top: u.rem(20);

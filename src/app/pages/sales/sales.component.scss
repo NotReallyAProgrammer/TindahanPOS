@@ -4,7 +4,7 @@
   padding-inline: var(--PADDING-INLINE-SM);
   padding-block: var(--PADDING-BLOCK-SM);
 
-  height: 100svh;
+  height: 100dvh;
   overflow-y: scroll;
 
   &__dash {
@@ -25,7 +25,8 @@
         background-color: white;
         box-shadow: var(--BOX-SHADOW);
         padding: u.rem(10);
-        height: 60px;
+        min-height: 60px;
+        max-height: 80px;
         display: flex;
         gap: var(--M-GAP);
         border-radius: u.rem(10);

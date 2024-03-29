@@ -1,10 +1,14 @@
 @use "../../../scss/util/" as u;
 
 .home {
-  min-height: 100svh;
+  height: 100dvh;
   padding-inline: var(--PADDING-INLINE-SM);
   padding-block: var(--PADDING-BLOCK-SM);
   position: relative;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
 
   &__header {
     margin-bottom: 20px;
@@ -34,8 +38,7 @@
   }
 
   &__select {
-    margin-top: 50px;
-
+    margin-block: auto;
     .select-container {
       list-style: none;
       display: flex;
@@ -43,12 +46,14 @@
       gap: var(--M-GAP);
 
       li {
-        min-height: 150px;
-        min-width: 100%;
+        height: u.rem(150);
+        width: 100%;
         background-color: var(--SUB-COLOR);
         border-radius: u.rem(10);
         display: grid;
         place-items: center;
+
+        overflow: hidden;
 
         &:nth-child(2) {
           background-color: var(--MAIN-COLOR);
@@ -60,9 +65,11 @@
 
         a {
           font-size: u.rem(30);
+          padding: 60px 40px;
           font-weight: 700;
           color: white;
-          padding: 70px 150px;
+          text-align: center;
+          width: 100%;
         }
       }
     }

@@ -14,8 +14,6 @@ export class SignUpComponent {
   authService = inject(AuthenticationService);
 
   register(val: any) {
-    console.log(val);
-
     if (val.password !== val.confirmPassword) {
       this.isPassword = !this.isPassword;
       setTimeout(() => {

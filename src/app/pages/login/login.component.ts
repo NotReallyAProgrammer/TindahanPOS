@@ -15,14 +15,11 @@ export class LoginComponent {
   router = inject(Router);
 
   onSubmit(value: any) {
-    console.log(value);
-
     this.authService
       .login(value.email, value.password)
       .then(() => {
         this.authService.loadUser();
 
-        console.log(localStorage.getItem('user'));
         this.router.navigate(['/home']);
       })
       .catch(() => {

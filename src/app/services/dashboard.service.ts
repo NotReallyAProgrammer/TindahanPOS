@@ -20,6 +20,7 @@ import {
   ref,
   uploadBytes,
 } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,11 @@ export class DashboardService {
   email: string = JSON.parse(localStorage.getItem('user') || '{}').email;
   uid: string = JSON.parse(localStorage.getItem('user') || '{}').uid;
 
-  constructor(private firestore: Firestore, private storage: Storage) {}
+  constructor(
+    private firestore: Firestore,
+    private storage: Storage,
+    private router: Router
+  ) {}
 
   //Loading User From Firestore
   loadUser() {
@@ -131,6 +136,8 @@ export class DashboardService {
     );
     return addDoc(dbInstance, data).then(() => {
       console.log('Item Save Success');
+
+      this.router.navigate(['/inventory']);
     });
   }
 

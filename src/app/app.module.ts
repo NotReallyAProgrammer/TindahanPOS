@@ -27,6 +27,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { SuccessComponent } from './layout/success/success.component';
+import { ToastMessageComponent } from './layout/toast-message/toast-message.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SuccessComponent } from './layout/success/success.component';
     LoginComponent,
     SignUpComponent,
     SuccessComponent,
+    ToastMessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@
 
   <section class="add-item__form">
     <p *ngIf="itemBarcode != ''">Barcode No: <span>1312923299</span></p>
-    <form #f="ngForm" action="" (submit)="onSubmit(f.value)">
+    <form #f="ngForm" action="" (submit)="onSubmit(f)">
       <label for="Name">Item</label>
       <input
         type="text"

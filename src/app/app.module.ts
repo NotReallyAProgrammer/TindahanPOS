@@ -29,6 +29,10 @@ import { InterceptorService } from './services/interceptor.service';
 import { SuccessComponent } from './layout/success/success.component';
 import { ToastMessageComponent } from './layout/toast-message/toast-message.component';
 
+//NGX-TOASTR
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +68,8 @@ import { ToastMessageComponent } from './layout/toast-message/toast-message.comp
     provideStorage(() => getStorage()),
 
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration(),

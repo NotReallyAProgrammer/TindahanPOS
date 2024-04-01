@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { Items } from '../../models/items';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-item',
@@ -54,18 +55,19 @@ export class AddItemComponent {
     this.selectedImg = $event.target.files[0];
   }
 
-  onSubmit(val: any) {
-    console.log(val);
+  onSubmit(val: NgForm) {
     let where = 'Items';
     let itemData: Items = {
       itemImg: this.selectedImg,
-      itemName: val.itemName,
-      itemQty: val.itemQty,
-      itemPrice: val.itemPrc,
-      itemSelling: val.itemSel,
-      itemCategory: val.itemCat,
+      itemName: val.value.itemName,
+      itemQty: val.value.itemQty,
+      itemPrice: val.value.itemPrc,
+      itemSelling: val.value.itemSel,
+      itemCategory: val.value.itemCat,
     };
 
     this.dashService.uploadImage(this.selectedImg, itemData, where);
+
+    val.resetForm();
   }
 }

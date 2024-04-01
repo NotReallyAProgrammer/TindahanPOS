@@ -10,6 +10,7 @@ import {
 import { Observable, map, take } from 'rxjs';
 import { CreditTotal } from '../models/credit';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,11 @@ export class CreditService {
 
   $subTotal!: Observable<Array<any>>;
   newTotal!: number;
-  constructor(private firestore: Firestore, private router: Router) {}
+  constructor(
+    private firestore: Firestore,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   loadCredit() {
     const dbInstance = collection(
@@ -66,7 +71,7 @@ export class CreditService {
       `${this.email}/credits/${this.uid}`
     );
     return addDoc(dbInstance, name).then(() => {
-      console.log('Name Save');
+      this.toastr.success('Name successfully added.', 'Credit Tab');
     });
   }
 
@@ -113,7 +118,7 @@ export class CreditService {
     );
 
     return updateDoc(docInstance, total).then(() => {
-      console.log('Payment Success');
+      this.toastr.success('Payment success.', 'Credit Payment');
     });
   }
 

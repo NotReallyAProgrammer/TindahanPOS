@@ -21,6 +21,7 @@ import {
   uploadBytes,
 } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,8 @@ export class DashboardService {
   constructor(
     private firestore: Firestore,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   //Loading User From Firestore
@@ -82,7 +84,7 @@ export class DashboardService {
     );
 
     return addDoc(dbInstance, data).then(() => {
-      console.log('Save Data Success');
+      this.toastr.success('Category successfully added.', 'Category');
     });
   }
 
@@ -90,7 +92,7 @@ export class DashboardService {
   async uploadImage(imgUrl: any, data: any, where: string) {
     let filePathName = '';
 
-    if (data.itemName !== '') {
+    if (where === 'Items') {
       filePathName = 'itemIMG';
     } else {
       filePathName = 'categoryIMG';
@@ -116,7 +118,7 @@ export class DashboardService {
       id
     );
     return deleteDoc(docInstance).then(() => {
-      console.log('SUCCESS');
+      this.toastr.success('Category Deleted.', 'Category');
     });
   }
 
@@ -135,9 +137,7 @@ export class DashboardService {
       this.uid
     );
     return addDoc(dbInstance, data).then(() => {
-      console.log('Item Save Success');
-
-      this.router.navigate(['/inventory']);
+      this.toastr.success('Item successfully added.', 'Item');
     });
   }
 

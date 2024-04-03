@@ -5,6 +5,7 @@
   padding-block: var(--PADDING-BLOCK-SM);
   min-height: 100dvh;
   position: relative;
+  overflow-y: scroll;
 
   &__info {
     margin-top: 50px;

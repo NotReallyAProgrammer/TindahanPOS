@@ -3,6 +3,7 @@ import { Observable, toArray } from 'rxjs';
 import { CreditService } from '../../services/credit.service';
 import { CreditName, CreditPayment, CreditTotal } from '../../models/credit';
 import { formatDate } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-credit',
@@ -11,6 +12,7 @@ import { formatDate } from '@angular/common';
 })
 export class CreditComponent {
   creditService = inject(CreditService);
+  toastr = inject(ToastrService);
 
   $data!: Observable<Array<any>>;
   $creditData!: Observable<Array<any>>;
@@ -20,6 +22,9 @@ export class CreditComponent {
   isMore: boolean = false;
   isItem: boolean = false;
   navSelect: boolean = false;
+
+  paymentFlag: boolean = false;
+
   nameHolder!: string;
   subTotal!: number;
   newTotal!: number;
@@ -95,21 +100,25 @@ export class CreditComponent {
   }
 
   payment(f: any) {
-    this.newTotal = this.subTotal - f.Payment;
-    let paymentInfo: CreditPayment = {
-      paymentDate: this.date,
-      paymentTime: this.time,
-      paymentPaid: f.Payment,
-      paymentTotal: this.subTotal,
-      paymentNewTotal: this.newTotal,
-    };
+    if (f.Payment > this.subTotal) {
+      this.toastr.warning('Payment cannot exceed total credit.');
+    } else {
+      this.newTotal = this.subTotal - f.Payment;
+      let paymentInfo: CreditPayment = {
+        paymentDate: this.date,
+        paymentTime: this.time,
+        paymentPaid: f.Payment,
+        paymentTotal: this.subTotal,
+        paymentNewTotal: this.newTotal,
+      };
 
-    let total: CreditTotal = {
-      subTotal: this.newTotal,
-    };
+      let total: CreditTotal = {
+        subTotal: this.newTotal,
+      };
 
-    this.creditService.creditPayment(paymentInfo, this.creditId, total);
+      this.creditService.creditPayment(paymentInfo, this.creditId, total);
 
-    this.isMore = false;
+      this.isMore = false;
+    }
   }
 }

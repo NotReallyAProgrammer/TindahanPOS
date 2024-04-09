@@ -179,10 +179,11 @@
     padding: u.rem(20);
 
     .more-wrapper {
+      position: relative;
       background-color: white;
       width: 100%;
       border-radius: u.rem(10);
-      height: 100%;
+      height: 90%;
       padding: u.rem(20);
 
       .more-header {
@@ -234,7 +235,7 @@
       }
 
       .date-wrapper {
-        height: 55%;
+        height: 40%;
         margin-top: u.rem(30);
         overflow-y: scroll;
         border: 2px solid var(--SUB-COLOR);
@@ -291,7 +292,7 @@
       }
 
       .history-wrapper {
-        height: 55%;
+        height: 40%;
         margin-top: u.rem(30);
         overflow-y: scroll;
         border: 2px solid var(--SUB-COLOR-DARK);
@@ -325,7 +326,7 @@
 
       .payment-form {
         position: absolute;
-        bottom: 4%;
+        bottom: 10%;
         left: 10%;
         right: 10%;
 

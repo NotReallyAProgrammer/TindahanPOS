@@ -119,6 +119,8 @@ export class CreditComponent {
       this.creditService.creditPayment(paymentInfo, this.creditId, total);
 
       this.isMore = false;
+
+      //TEST
     }
   }
 }
